@@ -1,0 +1,429 @@
+# STRUCTURE
+## Preamble
+### article template
+snippet \article article template
+	\\documentclass[twoside,a4paper, 11pt,openany]{article}
+	\\usepackage{~/git/github/tex/preamble}
+
+### book template 
+snippet \book book template
+	\\documentclass[twoside,a4paper, 11pt,openany]{book}
+	\\usepackage{~/git/github/tex/preamble}
+
+### \newcommand
+snippet \newc \newcommand
+	\\newcommand{\\${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
+
+### \usepackage
+snippet \usep \usepackage
+	\\usepackage[${1:options}]{${2:package}} ${0}
+
+### begin/end document
+snippet \doc \begin{document}
+	\\begin{document}
+	${0}
+	\\end{document}
+    	
+## Title Page
+### title, autors and \maketitle
+snippet \title title page
+	\\title{...}
+	\\author{...}
+	\\maketitle
+
+## Sections
+### part
+snippet \part document \part
+	\\part{$0}
+
+### chapter
+snippet \chap \chapter
+	\\chapter{$0}
+
+### section
+snippet \sec \section
+	\\section{$0}
+
+### unordered section
+snippet \sec* \section*
+	\\section*{$0}
+
+### subsection
+snippet \subsec \subsection
+	\\subsection{$0}
+snippet \ssec \subsection
+	\\subsection{$0}
+
+### unordered subsection
+snippet \subsec* \subsection*
+	\\subsection*{$0}
+snippet \ssec* \subsection*
+	\\subsection*{$0}
+
+### subsubsection
+snippet \subsubsec \subsubsection
+	\\subsubsection{$0}
+snippet \sssec \subsection
+	\\subsubsection{$0}
+
+### unordered subsubsection
+snippet \subsubsec* \subsubsection*
+	\\subsubsection*{$0}
+snippet \sssec* \subsubsection*
+	\\subsubsection*{$0}
+
+
+## References
+### bibliography
+snippet \biblio \bibliography
+	\\bibliography{files/refs.bib}	
+	\\bibliographystyle{plain}
+
+### citations
+snippet \cit 
+	\\cite{$0}
+
+# TEXT
+## Textstyle
+### italic
+snippet \it italic text
+	\\textit{${0}}
+
+### bold
+snippet \bf bold text
+	\\textbf{$0}
+
+### underline
+snippet \under underline text
+	\\underline{$0}
+
+### emphasize
+snippet \em emphasize text
+	\\emph{$0}
+
+### quotation
+snippet \quote csquote	
+	\\begin{displayquote}
+	$0
+	\\end{displayquote}
+
+## Fonts
+### sans serif
+snippet \sf sans serif
+	\\textsf{${1:${VISUAL:text}}}${0}
+
+### roman
+snippet \rm roman 
+	\\textrm{$0}
+
+### monospace
+snippet \tt typewriter
+	\\texttt{$0}
+	
+## Lists
+### ordered lists
+snippet \enu enumerate environment
+	\\begin{enumerate}
+		\\item $0
+	\\end{enumerate}
+
+### unordered lists
+snippet \itemi itemize environment
+	\\begin{itemize}
+		\\item $0
+	\\end{itemize}
+
+### new item
+snippet \i \item
+	\\item ${1:${VISUAL}}
+	
+## Indentation
+### do not indent
+snippet \noin \noindent
+	\\noindent
+	${0}
+
+## Environments
+### \begin environments 
+snippet \beg \begin{} ... \end{} block
+	\\begin{${1:env}}
+		${0:${VISUAL}}
+	\\end{$1}
+
+### tcolorbox
+snippet \box tcolorbox 
+	\\begin{tcolorbox}
+	${0}
+	\\end{tcolorbox}
+
+# Tabular
+#snippet tab tabular (or arbitrary) environment
+#	\\begin{${1:tabular}}{${2:c}}
+#		${0:${VISUAL}}
+#	\\end{$1}
+#snippet thm thm (or arbitrary) environment with optional argument
+#	\\begin[${1:author}]{${2:thm}}
+#		${0:${VISUAL}}
+#	\\end{$2}
+snippet \center center environment
+	\\begin{center}
+		${0:${VISUAL}}
+	\\end{center}
+# Equation
+snippet \eq equation environment
+	\\begin{equation}
+		${0:${VISUAL}}
+	\\end{equation}
+# Equation
+snippet \eql Labeled equation environment
+	\\begin{equation}
+		\\label{eq:${2}}
+		${0:${VISUAL}}
+	\\end{equation}
+# Equation
+snippet \eq* unnumbered equation environment
+	\\begin{equation*}
+		${0:${VISUAL}}
+	\\end{equation*}
+# Unnumbered Equation
+snippet \[ unnumbered equation: \[ ... \]
+	\\[
+		${0:${VISUAL}}
+	\\]
+
+	
+# Equation array
+snippet \eqa eqnarray environment
+	\\begin{eqnarray}
+		${0:${VISUAL}}
+	\\end{eqnarray}
+# Label
+snippet \lab \label
+	\\label{${1:eq:}${2:fig:}${3:tab:}${0}}
+
+
+
+#Math font
+snippet \mathf mathfrak
+	\\mathfrak{${1:${VISUAL:text}}}${0}
+snippet \mathc mathcal
+	\\mathcal{${1:${VISUAL:text}}}${0}
+snippet \mathscr mathscr
+	\\mathscr{${1:${VISUAL:text}}}${0}
+#misc
+snippet \foot \footnote
+	\\footnote{${1:${VISUAL:text}}}${0}
+snippet \fig figure environment (includegraphics)
+	\\begin{figure}
+	\\begin{center}
+		\\includegraphics[scale=${1}]{Figures/${2}}
+	\\end{center}
+	\\caption{${3}}
+	\\label{fig:${4}}
+	\\end{figure}
+	${0}
+#snippet tikz figure environment (tikzpicture)
+#	\\begin{figure}[htpb]
+#	\\begin{center}
+#	\\begin{tikzpicture}[scale=${1:1}, transform shape]
+#		${2}
+#	\\end{tikzpicture}
+#	\\end{center}
+#	\\caption{${3}}%
+#	\\label{fig:${4}}
+#	\\end{figure}
+#	${0}
+snippet \subfig subfigure environment
+	\\begin{subfigure}[${1}]{${2:\\textwidth}}
+	\\begin{center}
+		${3}
+	\\end{center}
+	\\caption{${4}}
+	\\label{fig:${5}}
+	\\end{subfigure}
+	${0}
+snippet \tikz tikzcd environment in equation
+	\\begin{equation}
+	\\begin{tikzcd}
+		${1}
+	\\end{tikzcd}
+	\\end{equation}
+	${0}
+snippet \tikz* tikzcd environment in equation*
+	\\begin{equation*}
+	\\begin{tikzcd}
+		${1}
+	\\end{tikzcd}
+	\\end{equation*}
+	${0}
+#math
+#snippet stackrel \stackrel{}{}
+#	\\stackrel{${1:above}}{${2:below}} ${0}
+snippet \frac \frac{}{}
+	\\frac{${1:num}}{${2:denom}} ${0}
+snippet \sum \sum^{}_{}
+	\\sum^{${1:n}}_{${2:i=1}} ${0}
+snippet \lim \lim_{}
+	\\lim_{${1:n \\to \\infty}} ${0}
+#snippet frame frame environment
+#	\\begin{frame}[${1:t}]
+#		\frametitle{${2:title}}
+#		\framesubtitle{${3:subtitle}}
+#		${0:${VISUAL}}
+#	\\end{frame}
+#snippet block block environment
+#	\\begin{block}{${1:title}}
+#		${0:${VISUAL}}
+#	\\end{block}
+#snippet alert alert text
+#	\\alert{${1:${VISUAL:text}}} ${0}
+#snippet alertblock alertblock environment
+#	\\begin{alertblock}{${1:title}}
+#		${0:${VISUAL}}
+#	\\end{alertblock}
+snippet \exam example environment
+	\\begin{example}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{example}
+snippet \thm theorem environment
+	\\begin{theorem}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{theorem}
+
+snippet \def definition environment
+	\\begin{definition}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{definition}
+snippet \lem lemma environment
+	\\begin{lemma}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{lemma}
+snippet \cor corollary environment
+	\\begin{corollary}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{corollary}
+
+snippet \prop proposition environment
+	\\begin{proposition}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{proposition}
+	
+snippet \proof proof environment
+	\\begin{proof}[${1:title}]{
+		${0:${VISUAL}}}
+	\\end{proof}
+
+#snippet col2 two-column environment
+#	\\begin{columns}
+#		\\begin{column}{0.5\\textwidth}
+#			${1}
+#		\\end{column}
+#		\\begin{column}{0.5\\textwidth}
+#			${0}
+#		\\end{column}
+#	\\end{columns}
+#snippet multicol2 two-column environment with multicol
+#	\\begin{multicols}{2}
+#		${1}
+#		\columnbreak
+#		${0}
+#	\\end{multicols}
+#snippet \{ \{ \}
+#	\\{ ${0} \\}
+#delimiter
+#snippet lr left right
+#	\\left${1} ${0:${VISUAL}} \\right$1
+#snippet lr( left( right)
+#	\\left( ${0:${VISUAL}} \\right)
+#snippet lr| left| right|
+#	\\left| ${0:${VISUAL}} \\right|
+#snippet lr{ left\{ right\}
+#	\\left\\{ ${0:${VISUAL}} \\right\\}
+#snippet lr[ left[ right]
+#	\\left[ ${0:${VISUAL}} \\right]
+snippet \lra langle rangle
+	\\langle ${0:${VISUAL}} \\rangle
+# Code listings
+#snippet lst
+#	\\begin{listing}[language=${1:language}]
+#		${0:${VISUAL}}
+#	\\end{listing}
+#snippet lsi
+#	\\lstinline|${1}| ${0}
+# Hyperlinks
+snippet \url
+	\\url{${1}} ${0}
+snippet \href
+	\\href{${1}}{${2}} ${0}
+# URL from Clipboard.
+#snippet urlc
+#	\\url{`@+`} ${0}
+#snippet hrefc
+#	\\href{`@+`}{${1}} ${0}
+# enquote from package csquotes
+#snippet enq enquote
+#	\\enquote{${1:${VISUAL:text}}} ${0}
+
+# Time derivative
+#snippet ddt time derivative
+#	\\frac{d}{dt} {$1} {$0}
+#
+# Limit
+#snippet \\lim limit
+#	\\lim_{{$1}} {{$2}} {$0}
+#
+# Partial derivative
+#snippet pdv partial derivation
+#	\\frac{\\partial {$1}}{\\partial {$2}} {$0}
+#
+# Second order partial derivative
+#snippet ppdv second partial derivation
+#	\\frac{\\partial^2 {$1}}{\\partial {$2} \\partial {$3}} {$0}
+#
+# Ordinary derivative
+#snippet dv derivative
+#	\\frac{d {$1}}{d {$2}} {$0}
+#
+# Summation
+#snippet summ summation
+#	\\sum_{{$1}} {$0}
+#
+# Shorthand for time derivative
+#snippet dot dot
+#	\\dot{{$1}} {$0}
+#
+# Shorthand for second order time derivative
+#snippet ddot ddot
+#	\\ddot{{$1}} {$0}
+
+# Vector
+#snippet vec vector
+#	\\vec{{$1}} {$0}
+#
+# Bar
+snippet \bar bar
+	\\bar{{$1}} {$0}
+
+# Cross product
+#snippet \x cross product
+#	\\times {$0}
+
+# Dot product
+#snippet . dot product
+#	\\cdot {$0}
+
+# Integral
+#snippet \\int integral
+#	\\int_{{$1}}^{{$2}} {$3} \\: d{$4} {$0}
+#
+# Right arrow
+snippet \ra rightarrow
+	\\rightarrow {$0}
+
+# hook right arrow
+snippet \hra hookrightarrow
+	\\hookrightarrow {$0}
+
+#  Right arrow
+snippet \Ra hookrightarrow
+	 \\Rightarrow {$0}                 

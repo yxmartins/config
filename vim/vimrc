@@ -1,0 +1,177 @@
+
+" BASIC config
+"> Modes
+">> do not use vi compatibility mode. 
+    set nocompatible
+"> Cursor and Mouse
+">> show cursor in any mode. allow use of mouse in any mode. fast scroll.
+    set ruler
+    set mouse=a
+    set ttyfast
+    let g:netrw_browsex_viewer= "firefox -P user"
+"> Search
+">> make search case-insensitive. capital letters make search case-sensitive
+    set ignorecase 
+    set smartcase
+"> Window
+">> show line numbers. show current mode. allow reuse the same windows.   
+    set number 
+    set laststatus=2 
+    set hidden
+">> set left margin. Show "VIM" in the terminal title 
+    set numberwidth=2
+    set title
+
+" PLUGIN config
+"> Pathogen as the Plugin Installer 
+    execute pathogen#infect()
+"> VimTex
+">> choosing the pdf reader and the compiler configuration. avoiding the log box.
+    let g:tex_flavor = 'latex'          
+    let g:vimtex_view_method = 'zathura'  
+    let g:vimtex_compiler_latexmk= {'options' : [ 
+        \'-pdf', 
+        \'-shell-escape',
+        \'-verbose', 
+        \'-file-line-error', 
+        \'-synctex=1', 
+        \'-interaction=nonstopmode',
+        \],}
+">> .bibtex autocomplete (doesn't working)
+    let g:vimtex_quickfix_enabled = 0   
+    let g:vimtex_complete_bib = {
+        \'menu_fmt': '[@type] @author_all (@year), "@title"'
+        \}
+">> using f5 to compile and open the resulting .pdf
+    autocmd filetype tex nmap <buffer> <f5> :VimtexCompile<cr> i
+    autocmd filetype tex imap <buffer> <f5> <esc> :VimtexCompile<cr> i
+"> Commentary
+">> comment current line in insert mode with ctrl+l. comment current paragraph with ctrl+p  
+    imap <c-l> <esc>gcc i
+    imap <c-p> <esc>gcap i
+    nmap <c-l> <esc>gcc i
+    nmap <c-p> <esc>gcap i
+"> SnipMate
+">> setting the newer version to avoid "SnipMate deprecated" message.
+    let g:snipMate = { 'snippet_version' : 1 }
+">> ctrl+e and ctrl+b to emphasized and bold text
+    autocmd filetype tex imap <buffer> <c-e>  \em<tab>
+    autocmd filetype tex imap <buffer> <c-b> \bf<tab>
+    autocmd filetype tex vmap <buffer> <c-e> c\emph{<esc>"+pi} 
+    autocmd filetype tex vmap <buffer> <c-b> c\emph{<esc>"+pi} 
+"> Calendar-Vim
+">> ctrl+up and ctrl+down to change month. < and > to change month
+    let g:calendar_keys = {
+    \'goto_next_month': '<c-down>',
+    \'goto_prev_month': '<c-up>',
+    \'goto_next_year': '<',
+    \'goto_prev_year': '>',
+    \}
+"> VimWiki
+">> setting the wiki paths. setting Markdown syntax
+    let g:vimwiki_list = [
+                          \{ 'path': '~/files/me/org/',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md' } 
+                        \]
+
+"TEXT config
+"> Indentation
+">> auto indent for plugins and files. allow backspacing auto indented paragraphs.
+    filetype plugin indent on  
+    filetype indent on
+    set autoindent
+    set breakindent
+    set backspace=indent,eol,start
+    set shiftwidth=4 
+">> tab maximal/default space size. convert tab space in white space.  
+    set tabstop=8                 
+    set softtabstop=4           
+    set expandtab
+"> Folding
+">> prevent folding
+    set nofoldenable
+"> Highlight
+">> enable 256-colors. allow syntax/search highlight. highlight cursor line.
+    set t_co=256
+    syntax enable
+    set hlsearch
+    set cursorline    
+">> set default color scheme.
+    colorscheme iceberg
+">> allowing to set a color scheme for a fixed filetype.
+    autocmd BufWinEnter,FileType tex colorscheme vimtex-colors
+"> spelling
+">> allow spell checker in specific languages. fixing spell language.
+    autocmd FileType latex,tex,md,markdown setlocal spell
+    set spelllang=en_us,pt_br
+">> ctrl+up to add word to dictionary
+    nmap <c-up> zgi
+    imap <c-up> <esc> zgi
+">> shift+up to see spell checker hints
+   
+
+"> Mailing
+">> set up syntax highlighting for mutt
+    au bufread,bufnewfile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt* :set ft=mail
+
+" HOTKEYS config
+"> Moving
+">> use cursor arrows to move through long lines, ignoring wrapping.
+    inoremap <silent> <down> <c-r>=pumvisible() ? "\<lt>down>" : "\<lt>c-o>gj"<cr>
+    inoremap <silent> <up> <c-r>=pumvisible() ? "\<lt>up>" : "\<lt>c-o>gk"<cr>
+    nmap <down> gj
+    nmap <up> gk
+">> home/end button goes to top/end of the page
+    imap <home> <esc> ggi
+    nmap <home> ggi
+    imap <end> <esc> GGi
+    nmap <end> GGi
+"> Search
+">> use ctrl+f to search. ctrl+down to move along results.
+    nmap <silent> <c-f> /
+    imap <silent> <c-f> <esc>/
+    nmap <c-down> n
+"> Editing
+">> delete with backspace in visual mode 
+    vnoremap <bs> d<esc>i
+">> ctrl+x to cut, crtl+c to copy and ctrl+v to paste (in the normal mode)
+    nmap <c-k> <c-v>
+    imap <c-k> <esc><c-v> 
+    vmap <c-x> c
+    imap <c-x> <esc>vc
+    vmap <c-c> "+yi
+    imap <c-v> <esc> "+pi
+">> copy and paste directly to clipboard
+    set clipboard=unnamedplus
+">> ctrl+z to undo and ctrl+r to redo
+    noremap <c-z> u
+    inoremap <c-z> <c-o>u
+    imap <c-r> <esc><c-r>i
+"> Selecting
+">> use shift+arrows to select text.
+    nmap <s-up> v<up>
+    nmap <s-down> v<down>
+    nmap <s-left> v<left>
+    nmap <s-right> v<right>
+    vmap <s-up> <up>
+    vmap <s-down> <down>
+    vmap <s-left> <left>
+    vmap <s-right> <right>
+    imap <s-up> <esc>v<up>
+    imap <s-down> <esc>v<down>
+    imap <s-left> <esc>v<left>
+    imap <s-right> <esc>v<right>
+">> use ctrl+a to select all
+    nmap <c-a> ggvGG
+    imap <c-a> <esc>ggvGG
+"> General
+">> save with ctrl+s
+    nmap <c-s> :w!<cr>i
+    imap <c-s> <esc> :w!<cr>i
+    vmap <c-s> <esc> :w!<cr>
+">> quit without saving with ctrl+q
+    nmap <c-q> :q!<cr>
+    imap <c-q> <esc> :q!<cr>
+    vmap <c-q> <esc> :q!<cr>
+

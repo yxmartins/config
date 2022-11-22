@@ -1,0 +1,66 @@
+# PROMPT
+##  display time and the current directory
+    time="01;33m`date +%H:%M`"
+    time1="\[\033[$time\]"
+    dir1="\[\033[01;32m\]\w\[\033[00m\]"
+    PS1="$dir1\$ "
+
+# INCLUDES
+## Sync-Sh
+### sync local dirs with git initialize copies
+### push the content to github or gitlab
+#    if [ -f ~/files/nerd/dev/sh/sync-sh/sync ]; then
+#        source  ~/files/nerd/dev/sh/sync-sh/sync
+#    fi
+    if [ -f ~/files/nerd/dev/sh/sync-script/sync-script.sh ]; then
+        source  ~/files/nerd/dev/sh/sync-script/sync-script.sh
+    fi
+
+## Trsl-Sh
+### intuitive cli for translate-shell
+    if [ -f ~/files/nerd/dev/sh/trsl-sh/trsl ]; then
+        source  ~/files/nerd/dev/sh/trsl-sh/trsl
+    fi
+## Nav-Sh
+### easy dir navigation
+    if [ -f ~/files/nerd/dev/sh/easycl-sh/nav ]; then
+        source  ~/files/nerd/dev/sh/easycl-sh/nav
+    fi
+## Mk-Sh
+### make files, dirs and remove (move to trash)
+    if [ -f ~/files/nerd/dev/sh/easycl-sh/mk ]; then
+        source  ~/files/nerd/dev/sh/easycl-sh/mk
+    fi
+## Vim-Org
+      source  ~/.config/vim-org/script/org
+
+# ALIASES
+## start vim in the insert mode
+    alias v="sudo vim -c startinsert"
+## start spotifyd and spotify-tui together
+    alias spt="spotifyd && spt"
+## wifi configuration
+    alias wifi="nmtui"
+    alias wf="nmtui"
+## "z" to open .pdf with zathura
+    alias z="zathura"
+## "mt" to open mutt
+    alias mail="mutt" 
+
+## shutdown quickly
+    alias shutdown="shutdown -h now"
+##  display the 256 colors
+    alias 256="curl -s https://gist.githubusercontent.com/haletom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash"
+
+# PARTICULAR
+## calculate the price of books
+    alias preco="python ~/files/job/livraria/preco.py"
+## meet with hugo
+    alias hugo="firefox https://meet.google.com/zbb-xsxg-swe"
+## "doc" to open documentation wiki
+    alias doc="vim ~/files/nerd/doc/index.md"
+## "edu" to open edu wiki
+    alias edu="vim ~/files/edu/wiki/index.md"
+
+
+
