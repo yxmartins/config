@@ -22,13 +22,11 @@
     if [ -f ~/files/nerd/dev/sh/trsl-sh/trsl ]; then
         source  ~/files/nerd/dev/sh/trsl-sh/trsl
     fi
-## Nav-Sh
-### easy dir navigation
+## Ecl-Sh
+### easy command line for bash
     if [ -f ~/files/nerd/dev/sh/easycl-sh/nav ]; then
         source  ~/files/nerd/dev/sh/easycl-sh/nav
     fi
-## Mk-Sh
-### make files, dirs and remove (move to trash)
     if [ -f ~/files/nerd/dev/sh/easycl-sh/mk ]; then
         source  ~/files/nerd/dev/sh/easycl-sh/mk
     fi
@@ -48,14 +46,21 @@
 ## "mail" to open mutt
     alias mail="mutt"
 ## "nav" to open broot
-    alias nav="br"
-## "fileman" to open the default file manager
-    alias fileman="lxsession-default file_manager"
-
+    alias nav="vifm"
+## "calc" to open the calculator bc in the interactive mode
+    alias calc="bc -q -i"
+## "menu" to open bmenu
+    alias menu="bmenu"
+## "plan" to open calcurse
+    alias cal="calcurse"
 ## shutdown quickly
-    alias shutdown="shutdown -h now"
-##  display the 256 colors
+    alias shtdw="shutdown -h now"
+## display the 256 colors
     alias 256="curl -s https://gist.githubusercontent.com/haletom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash"
+## "lib" to open the library
+    alias lib="cd ~/files/lib && nav"
+## "libgen" to open libgen-cli
+    alias libgen="cd ~/.config && ./libgen search -o ~/files/lib"
 
 # PARTICULAR
 ## calculate the price of books

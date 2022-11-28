@@ -8,7 +8,6 @@
     set ruler
     set mouse=a
     set ttyfast
-    let g:netrw_browsex_viewer= "firefox -P user"
 "> Search
 ">> make search case-insensitive. capital letters make search case-sensitive
     set ignorecase 
@@ -21,6 +20,9 @@
 ">> set left margin. Show "VIM" in the terminal title 
     set numberwidth=2
     set title
+"> Other
+">> opn hyperlinks in firefox
+    let g:netrw_browsex_viewer= "firefox -P user"
 
 " PLUGIN config
 "> Pathogen as the Plugin Installer 
@@ -61,19 +63,33 @@
     autocmd filetype tex vmap <buffer> <c-b> c\emph{<esc>"+pi} 
 "> Calendar-Vim
 ">> ctrl+up and ctrl+down to change month. < and > to change month
-    let g:calendar_keys = {
-    \'goto_next_month': '<c-down>',
-    \'goto_prev_month': '<c-up>',
-    \'goto_next_year': '<',
-    \'goto_prev_year': '>',
-    \}
+"    let g:calendar_keys = {
+"    \'goto_next_month': '<c-down>',
+"    \'goto_prev_month': '<c-up>',
+"    \'goto_next_year': '<',
+"    \'goto_prev_year': '>',
+"    \}
 "> VimWiki
 ">> setting the wiki paths. setting Markdown syntax
     let g:vimwiki_list = [
                           \{ 'path': '~/files/me/org/',
                           \  'syntax': 'markdown',
+                          \  'ext': '.md' },
+                          \{ 'path': '~/files/me/org/dev',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md' },
+                          \{ 'path': '~/files/me/org/mpc',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md' },
+                          \{ 'path': '~/files/me/org/research',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md' },
+                          \{ 'path': '~/files/me/org/pessoal',
+                          \  'syntax': 'markdown',
                           \  'ext': '.md' } 
                         \]
+">> move to the primary wiki
+    autocmd filetype md inoremap <C-CR> <esc><cr>
 
 "TEXT config
 "> Indentation
@@ -106,10 +122,11 @@
     autocmd FileType latex,tex,md,markdown setlocal spell
     set spelllang=en_us,pt_br
 ">> ctrl+up to add word to dictionary
-    nmap <c-up> zgi
-    imap <c-up> <esc> zgi
-">> shift+up to see spell checker hints
-   
+    nmap <c-up> zg i
+    imap <c-up> <esc> zg i
+">> ctrl+down to display the spell hints
+    nmap <c-down> z=i
+    imap <c-down> <esc> z=i
 
 "> Mailing
 ">> set up syntax highlighting for mutt
@@ -117,6 +134,10 @@
 
 " HOTKEYS config
 "> Moving
+">> esc in normal nome move to insert mode
+    nmap <esc> i
+">> tab in normal mode
+    nmap <tab> i<tab>
 ">> use cursor arrows to move through long lines, ignoring wrapping.
     inoremap <silent> <down> <c-r>=pumvisible() ? "\<lt>down>" : "\<lt>c-o>gj"<cr>
     inoremap <silent> <up> <c-r>=pumvisible() ? "\<lt>up>" : "\<lt>c-o>gk"<cr>
@@ -163,8 +184,8 @@
     imap <s-left> <esc>v<left>
     imap <s-right> <esc>v<right>
 ">> use ctrl+a to select all
-    nmap <c-a> ggvGG
-    imap <c-a> <esc>ggvGG
+    nmap <c-a> ggvGG$
+    imap <c-a> <esc>ggvGG$
 "> General
 ">> save with ctrl+s
     nmap <c-s> :w!<cr>i
