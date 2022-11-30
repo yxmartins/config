@@ -114,6 +114,17 @@
                 <y>center</y>
             </action>
         </keybind>
+         <keybind key="C-A-Up">
+            <action name="Unmaximize">
+                <direction>both</direction>
+            </action>
+            <action name="MoveResizeTo">
+                <width>50%</width>
+                <height>100%</height>
+                <x>center</x>
+                <y>center</y>
+            </action>
+        </keybind>
         <keybind key="A-Up">
             <action name="ToggleMaximize">
                 <direction>both</direction>
