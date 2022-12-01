@@ -43,18 +43,24 @@
     alias wf="nmtui"
 ## "z" to open .pdf with zathura
     alias z="zathura"
-## "mail" to open mutt
+## "mail" or "m" to open mutt
     alias mail="mutt"
-## "nav" to open broot
+    alias m="mutt"
+## "nav" or "n" to open broot
     alias nav="vifm"
+    alias n="vifm"
 ## "calc" to open the calculator bc in the interactive mode
     alias calc="bc -q -i"
 ## "menu" to open bmenu
     alias menu="bmenu"
-## "plan" to open calcurse
+## "cal" or "c" to open calcurse
     alias cal="calcurse"
+    alias c="calcurse"
 ## shutdown quickly
+    alias shutdown="shutdown -h now" 
     alias shtdw="shutdown -h now"
+    alias shdw="shutdown -h now"
+
 ## display the 256 colors
     alias 256="curl -s https://gist.githubusercontent.com/haletom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash"
 ## "lib" to open the library

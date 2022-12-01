@@ -136,8 +136,11 @@
 "> Moving
 ">> esc in normal nome move to insert mode
     nmap <esc> i
-">> tab in normal mode
-    nmap <tab> i<tab>
+">> tab/backspace in normal mode
+    nmap <tab> i<tab><esc>
+    nmap <backspace> i<backspace><right><esc>
+">> a/z in normal mode move to beggining/ending of line
+    nmap a ^  
 ">> use cursor arrows to move through long lines, ignoring wrapping.
     inoremap <silent> <down> <c-r>=pumvisible() ? "\<lt>down>" : "\<lt>c-o>gj"<cr>
     inoremap <silent> <up> <c-r>=pumvisible() ? "\<lt>up>" : "\<lt>c-o>gk"<cr>

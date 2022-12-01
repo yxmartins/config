@@ -1,0 +1,107 @@
+Return-Path: <juan@juanmeleiro.mat.br>
+Authentication-Results:  gmx.net; dkim=pass header.i=@juanmeleiro.mat.br
+Received: from out2.migadu.com ([188.165.223.204]) by mx-ha.gmx.net (mxgmx115
+ [212.227.17.4]) with ESMTPS (Nemesis) id 1MtNGY-1pBjDg2l8o-00ukIv for
+ <yxm@gmx.ie>; Wed, 23 Nov 2022 19:37:38 +0100
+Date: Wed, 23 Nov 2022 15:37:31 -0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juanmeleiro.mat.br;
+	s=default; t=1669228656;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nxTe/AajsUen6dgjJfSd50qN2c2tg/ElRXqw0NShxmc=;
+	b=SnDvuzx/UEXi8AFLrjGmUlhQZAiMgToSDKcI1pTxMV1wMdIeix6kqP84KgfxrpeTtnqGzU
+	SSq0asFANCW7uBmkeMiRelknQSC1jD7Y2HYP9Drowqc8Z/n1hREVzQQnjvjfXxLv+Lq1Fq
+	SIAiI7XTxAJWrAFZyP5BoedkCWjvFB0=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: USP - Juan Meleiro 2 <juan@juanmeleiro.mat.br>
+To: Yuri Ximenes Martins <yxm@gmx.ie>
+Subject: Re: lista wiki
+Message-ID: <20221123183731.rmxfmnclqxo6j4hl@grimnir.localdomain>
+References: <20221118205331.GC3106@yurixm>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221118205331.GC3106@yurixm>
+X-Migadu-Flow: FLOW_OUT
+Envelope-To: <yxm@gmx.ie>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:BWqlm1C5WNQ=;rN6aKsbv9YE9ppo2zQQlfUdvL5XN
+ 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
+ cj+zg=
+
+Oi Yuri,
+
+Preciso que você crie uma conta neste site
+
+    https://www.vultr.com/register/
+
+e depois me passe as credenciais. O sistema de cobrança funciona com
+créditos: você carrega tantos dólares usando um cartão de crédito,
+PayPal, etc, e ele vai descontando. Todo mês, ele te envia o extrato.
+
+Se você não estiver satisfeito com esse provedor, posso procurar outro
+também; mas esse é mais ou menos o preço (a depender do dólar).
+
+-- 
+Juan

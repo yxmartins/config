@@ -1,0 +1,94 @@
+# BASIC info
+    set my_email_adress = "2nd mail adress"
+    set my_pass = "pass of 2nd account"
+    set realname = "your name"
+    set my_imap = "imap url of 2nd account"
+    set my_smtp = "smtp url of 2nd account"
+
+# SERVER config
+## SSL
+    set ssl_starttls=yes
+    set ssl_force_tls=yes
+    set certificate_file ="mutt/accounts/2/certificates"
+## IMAP
+    set imap_user = "$my_email_adress"
+    set imap_pass = "$my_pass"
+    unset imap_passive
+## SMTP
+    set smtp_url = "smtp://$my_email_adress@$my_smtp:587/"
+    set smtp_pass = "$my_pass"
+## connecting the folders
+    set from = "$my_email_adress"
+    set folder = "imaps://$my_imap:993"
+    set spoolfile = "=Inbox"
+    set postponed = "=Drafts"
+    set record = "=Sent"
+    set trash = "=Trash"
+    set header_cache = mutt/accounts/2/cache/headers
+    set message_cachedir = mutt/accounts/2/cache/bodies 
+
+# MAIL config
+## view the mail in threaded mode
+    set sort = threads
+## show mails in the reverse order
+    set sort_aux = reverse-last-date-received
+## check for new emails (in seconds)
+    set timeout = 10
+    set mail_check_recent = yes
+    set mail_check=5
+    set imap_idle = yes
+## include received email in replies.
+    set include 
+    set attribution="\n\n\n--\n"
+## view in html instead in plain text
+    set send_charset="utf-8"
+    auto_view text/html 
+## allow write mail in markdown: ESC call pandoc to convert markdown into html
+    macro compose \e "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"
+## settig mail signature
+    set signature = "~/.mutt/config/signature"
+## using Abook to manage contacts. ctrl+a to add sender as a contacti
+    set query_command= "abook --mutt-query '%s'"
+    macro index,pager  a "<pipe-message>abook --add-email-quiet<return>"
+    bind editor        <Tab> complete-query
+
+# LAYOUT config
+## Index
+### date format. mailbox format 
+    set date_format = "%d %b %R"
+    set index_format = "    %d, by %n. Subject: %s"
+### status bar format
+    set status_format = "Mailbox: %f | Messages: %m, %l"
+## Sidebar
+### start with hidden sidebar. sidebar width. sidebar format.
+    set sidebar_visible=no
+    set sidebar_width=20
+    set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+    set mail_check_stats
+### which mailboxes to list in the sidebar
+    mailboxes =Inbox 
+    mailboxes =Drafts 
+    mailboxes =Sent 
+    mailboxes =Trash 
+    mailboxes ~/Mail/Attach
+### simplify the mailboxes names
+    set sidebar_short_path 
+    set sidebar_delim_chars="/" 
+## Pager
+### pager format
+    set pager_format = "From: %F.   Subject: %s"
+### displaying only relevant headers
+#### ignore all headers
+    ignore *
+#### un-ignore the relevant ones
+    unignore From:
+    unignore To:
+    unignore Subject:
+    unignore Date:
+    unignore CC:
+    unignore BCC:
+#### fix the order of the relevant headers
+    hdr_order From: Subject: To: CC: BCC: Date:
+## Colorscheme
+    source mutt/config/colors
+

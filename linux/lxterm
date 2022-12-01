@@ -37,13 +37,13 @@ disablealt=false
 disableconfirm=false
 
 [shortcut]
-new_window_accel=<Primary><Shift>n
+new_window_accel=
 new_tab_accel=<Primary>t
 close_tab_accel=<Primary>w
-close_window_accel=<Shift>F4
+close_window_accel=
 copy_accel=<Primary><Shift>c
 paste_accel=<Primary><Shift>v
-name_tab_accel=<Primary><Shift>i
+name_tab_accel=
 previous_tab_accel=<Primary>Left
 next_tab_accel=<Primary>Right
 move_tab_left_accel=<Alt>Left

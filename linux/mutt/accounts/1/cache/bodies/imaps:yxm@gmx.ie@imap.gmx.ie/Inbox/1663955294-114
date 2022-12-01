@@ -1,0 +1,155 @@
+Return-Path: <juan@juanmeleiro.mat.br>
+Authentication-Results:  gmx.net; dkim=pass header.i=@juanmeleiro.mat.br
+Received: from out2.migadu.com ([188.165.223.204]) by mx-ha.gmx.net (mxgmx102
+ [212.227.17.4]) with ESMTPS (Nemesis) id 1M7sUM-1p4Cs83EjC-004xQs for
+ <yxm@gmx.ie>; Wed, 30 Nov 2022 14:44:14 +0100
+Date: Wed, 30 Nov 2022 10:44:09 -0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juanmeleiro.mat.br;
+	s=default; t=1669815853;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8oakAP8BqKsv8R2+nJ8/jLmTcNJrNI7ZMIW/jGT6v7E=;
+	b=okEpmYQ0rSlHwdXSGpWxaOlEvoavfAZGUg/RTSnoEGw/n/7pvuAoTrcs3+WfGUxkaJHdET
+	zQ56b4NRmJgX9BuZw/I1+BLtLuWAsz2UHrnlpi4/cZm45UOygVKo8LL0MUXQK0xaSLkEeo
+	2FECvX5R3f0r4D1zISnvBXaPIEmarzk=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: USP - Juan Meleiro 2 <juan@juanmeleiro.mat.br>
+To: Yuri Ximenes Martins <yxm@gmx.ie>
+Subject: Re: lista wiki
+Message-ID: <20221130134409.f6vvf7pawcfzcro5@grimnir.localdomain>
+References: <20221118205331.GC3106@yurixm>
+ <20221123183731.rmxfmnclqxo6j4hl@grimnir.localdomain>
+ <20221129223623.GA9728@yurixm>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221129223623.GA9728@yurixm>
+X-Migadu-Flow: FLOW_OUT
+Envelope-To: <yxm@gmx.ie>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:AqlRt1Z5KXg=;FmNdjnU5YpzGxdHEDB8YKSnUghYo
+ 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
+ 1D9ds=
+
+Oi Yuri,
+
+Yuri Ximenes Martins [2022-11-29 20:36]:
+> Peço desculpas pela demora. Estava tentando arrumar um tempo pra entrar em
+> contado com a hospedagem atual.
+
+Tranquilo!
+
+> Você havia falado de criar a conta nesse novo provedor utilizando o email
+> oficial do grupo, o que é algo bastante sensato. […] No entanto, como
+> confirmei com a Hostgator, ao desligarmos a hospedagem e deixarmos só o
+> domínio registrado, perdem-se os emails, pois eles estão vinculados ao
+> plano da hospedagem.
+> 
+> Outro ponto é que o grupo vai passar por um processo de reestruturação e
+> vai ir de “grupo de pesquisa” pra “organização que realiza pesquisa”. Como
+> parte da reestruturação, penso que devemos mudar o domínio de .group pra
+> alum .org.
+> 
+> Sendo assim, o que acho mais sensato é utilizar um email para cadastrar o
+> novo provedor que fosse independente do domínio math-phys.group.
+> 
+> […]
+>
+> - esperamos a reunião que faremos pra decidir as coisas do grupo e,
+> dentre elas, o novo domínio. Daí então criar um email oficial com o
+> novo domínio e cadastrar a hospedagem nele;
+> - ou criamos de imediato um email, com proposito puramente burocrático,
+> onde essa hospedagem, o novo domínio e outras coisas seriam
+> cadastrados.
+
+Certo. Primeiro ponto: é possível fazer hospedagem de email
+independentemente de hospedagem de site. Há duas alternativas: contratar
+um provedor de email (eu uso um chamado Migadu, muito bom), ou fazer a
+própria hospedagem. Claro, para fazer a própria hospedagem é preciso ter
+um servidor, o que ainda não temos, além de ser uma grande bagunça lidar
+com esse tipo de coisa.
+
+Conclusão: caso você não queira ter o gasto adicional de um provedor de
+email, é possível ter um Gmail que serve puramente como email de
+registro no provedor de VPS (virtual private server), onde estará
+hospedado o resto dos emails (inclusive no domínio .org).
+
+Se for decidido registrar um domínio .org.br, recomendo fazê-lo
+diretamente no registro.br.
+
+    https://registro.br/
+
+Então minha resposta depende de uma outra pergunta que te faço: você
+prefere qual das duas situações seguintes?
+
+1. Ter um Gmail que serve para cadastrar no provedor de VPS; e colocar
+   no VPS o site .org e os emails associados a esse domínio.
+
+2. Não ter um Gmail; ter emails .org hospedados num segundo provedor, e
+   então usá-los para contratar um VPS.
+
+No primeiro caso, já podemos começar. No segundo, é melhor esperar a tal reunião.
+
+-- 
+Juan

@@ -1,108 +1,26 @@
-# BASIC info
-    set my_email_adress = "yxm@gmx.ie"
-    set my_pass = "Banana-157"
-    set realname = "Yuri Ximenes Martins"
-    set my_imap = "imap.gmx.ie"
-    set my_smtp = "mail.gmx.ie"
 
-# SERVER config
-## SSL
-    set ssl_starttls=yes
-    set ssl_force_tls=yes
-    set certificate_file ="~/.mutt/config/certificates"
-## IMAP
-    set imap_user = "$my_email_adress"
-    set imap_pass = "$my_pass"
-    unset imap_passive
-## SMTP
-    set smtp_url="smtps://$my_email_adress@$my_smtp:465/"
-    set smtp_pass = "$my_pass"
-## connecting the folders
-    set from = "$my_email_adress"
-    set folder = "imaps://$my_imap"
-    set spoolfile = "=Inbox"
-    set postponed = "=Drafts"
-    set record = "=Sent"
-    set trash = "=Trash"
-
-# MAIL config
-## view the mail in threaded mode
-    set sort = threads
-## show mails in the reverse order
-    set sort_aux = reverse-last-date-received
-## check for new emails (in seconds)
-    set timeout = 10
-    set mail_check_recent = yes
-    set mail_check=5
-    set imap_idle = yes
-## include received email in replies.
-    set include 
-    set attribution="\n\n\n--\n"
-## view in html instead in plain text
-    set send_charset="utf-8"
-    auto_view text/html 
-## allow write mail in markdown: ESC call pandoc to convert markdown into html
-    macro compose \e "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"
-## settig mail signature
-    set signature = "~/.mutt/config/signature"
-## using Abook to manage contacts. ctrl+a to add sender as a contacti
-    set query_command= "abook --mutt-query '%s'"
-    macro index,pager  a "<pipe-message>abook --add-email-quiet<return>"
-    bind editor        <Tab> complete-query
-
-# LAYOUT config
-## Index
-### date format. mailbox format 
-    set date_format = "%d %b %R"
-    set index_format = "    %d, by %n. Subject: %s"
-### status bar format
-    set status_format = "Mailbox: %f | Messages: %m, %l"
-## Sidebar
-### start with hidden sidebar. sidebar width. sidebar format.
-    set sidebar_visible=no
-    set sidebar_width=20
-    set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
-    set mail_check_stats
-### which mailboxes to list in the sidebar
-    mailboxes =Inbox 
-    mailboxes =Drafts 
-    mailboxes =Sent 
-    mailboxes =Trash 
-    mailboxes ~/Mail/Attach
-### simplify the mailboxes names
-    set sidebar_short_path 
-    set sidebar_delim_chars="/" 
-## Pager
-### pager format
-    set pager_format = "From: %F.   Subject: %s"
-### displaying only relevant headers
-#### ignore all headers
-    ignore *
-#### un-ignore the relevant ones
-    unignore From:
-    unignore To:
-    unignore Subject:
-    unignore Date:
-    unignore CC:
-    unignore BCC:
-#### fix the order of the relevant headers
-    hdr_order From: Subject: To: CC: BCC: Date:
-## Colorscheme
-    source ~/.mutt/config/colors
+# ACCOUNTS config
+    folder-hook '1rc' 'source mutt/accounts/1rc'
+    folder-hook '2rc' 'source mutt/accounts/2rc'
+## Default account
+    source ~/.mutt/accounts/1rc         
+## Macros for switching accounts
+    macro index <esc>1 '<sync-mailbox><enter-command>source mutt/accounts/1rc<enter><change-folder>!<enter>'
+    macro index <esc>2 '<sync-mailbox><enter-command>source mutt/accounts/2rc<enter><change-folder>!<enter>'
 
 # MUTT config
 ## ask before quit
     set quit = ask-yes
     set markers = no
 ## setting vim (in the insert mode with markdown syntax) to write emails
-    set edit_headers 
+    set edit_headers
     set editor = "vim -c 'set ft=markdown' -c 'startinsert'"
 ## add a tilde in the end of the mail list (like in Vim)
     set tilde
 ## dont ask to save a message as a draft
     set postpone=ask-no
     set recall=no
-## don show the "Press any key to continue..." message.   
+## don show the "Press any key to continue..." message.
     set wait_key=no
 
 # HOTKEYS config
@@ -112,23 +30,22 @@
     bind index,pager r group-reply
 ## disable help bar. ctrl+h to desiplay it.
     set help=no
-    macro index,pager \Ch ":toggle help<enter>:set ?help<enter>"  
-# "g-" to change the mail box 
-    macro index gi "<change-folder>=Inbox<enter>" 
-    macro index gt "<change-folder>=Trash<enter>"  
-    macro index gs "<change-folder>=Sent<enter>"   
+    macro index,pager \Ch ":toggle help<enter>:set ?help<enter>"
+# "g-" to change the mail box
+    macro index gi "<change-folder>=Inbox<enter>"
+    macro index gt "<change-folder>=Trash<enter>"
+    macro index gs "<change-folder>=Sent<enter>"
     macro index gd "<change-folder>=Drafts<enter>"
-    macro index ga "<change-folder>~/Mail/Attach<enter>"
 ## sidebar navigation
-    bind index,pager < sidebar-prev
-    bind index,pager > sidebar-next
-    bind index,pager <SPACE>  sidebar-open
+    bind index,pager n sidebar-next
+    bind index,pager N sidebar-prev
+    bind index,pager \cn  sidebar-open
 ## using up/down arrows to read a mail
     bind pager <up> previous-line
     bind pager <down> next-line
 ## show/hide sidebar
-    macro index <TAB> '<enter-command>toggle sidebar_visible<enter><refresh>'
-    macro pager <TAB> '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
-## quit with ctrl+q instead of with "q"
-    bind pager,index \Cq noop
-    macro generic,index,pager \Cq "q"
+    macro index <tab> '<enter-command>toggle sidebar_visible<enter><refresh>'
+    macro pager <tab> '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+## "f5" to verify for new emails
+    bind index <f5> imap-fetch-mail
