@@ -83,7 +83,7 @@
                 <y>Center</y>
             </position>
             <size>
-                <width>50%</width>
+                <width>75%</width>
                 <height>75%</height>
             </size>
         </application>
@@ -110,17 +110,6 @@
             <action name="MoveResizeTo">
                 <width>75%</width>
                 <height>75%</height>
-                <x>center</x>
-                <y>center</y>
-            </action>
-        </keybind>
-         <keybind key="C-A-Up">
-            <action name="Unmaximize">
-                <direction>both</direction>
-            </action>
-            <action name="MoveResizeTo">
-                <width>50%</width>
-                <height>100%</height>
                 <x>center</x>
                 <y>center</y>
             </action>
@@ -205,6 +194,11 @@
         <keybind key="F10">
             <action name="Execute">
                 <command>jumpapp -f -p lxterminal</command>
+             </action>
+         </keybind>
+         <keybind key="F9">
+            <action name="Execute">
+                <command>~/.config/biscuit/biscuit</command>
              </action>
         </keybind>
     </keyboard>

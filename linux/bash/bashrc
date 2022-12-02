@@ -50,23 +50,30 @@
     alias nav="vifm"
     alias n="vifm"
 ## "calc" to open the calculator bc in the interactive mode
-    alias calc="bc -q -i"
+    alias calc="bc -q -i -l"
 ## "menu" to open bmenu
     alias menu="bmenu"
 ## "cal" or "c" to open calcurse
     alias cal="calcurse"
     alias c="calcurse"
-## shutdown quickly
-    alias shutdown="shutdown -h now" 
-    alias shtdw="shutdown -h now"
-    alias shdw="shutdown -h now"
-
+## make a backup and shutdown quickly
+    alias shutdown="bkp && shutdown -h now" 
+    alias shtdw="bkp && shutdown -h now"
+    alias shdw="bkp && shutdown -h now"
+## "apps" to open biscuit
+    alias apps="cd /home/yurixm/.config/biscuit && ./biscuit & disown"
 ## display the 256 colors
     alias 256="curl -s https://gist.githubusercontent.com/haletom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash"
 ## "lib" to open the library
     alias lib="cd ~/files/lib && nav"
 ## "libgen" to open libgen-cli
     alias libgen="cd ~/.config && ./libgen search -o ~/files/lib"
+## "k" to make the cursor moving fast.
+    function k() {
+        echo >> ~/.config/lxsession/Lubuntu/desktop.conf
+ #       sed -i '$d' ~/.config/lxsession/Lubuntu/desktop.conf
+    }
+
 
 # PARTICULAR
 ## calculate the price of books
