@@ -83,8 +83,8 @@
                 <y>Center</y>
             </position>
             <size>
-                <width>75%</width>
-                <height>75%</height>
+                <width>100%</width>
+                <height>100%</height>
             </size>
         </application>
     </applications>
@@ -188,7 +188,7 @@
         </keybind>
         <keybind key="F12">
             <action name="Execute">
-                <command>jumpapp -f -p vieb</command>
+                <command>jumpapp -f -p google-chrome</command>
             </action>
         </keybind>
         <keybind key="F10">
@@ -196,11 +196,6 @@
                 <command>jumpapp -f -p lxterminal</command>
              </action>
          </keybind>
-         <keybind key="F9">
-            <action name="Execute">
-                <command>~/.config/biscuit/biscuit</command>
-             </action>
-        </keybind>
     </keyboard>
     <mouse>
     <doubleClickTime>200</doubleClickTime>

@@ -79,7 +79,15 @@
 ## calculate the price of books
     alias preco="python ~/files/job/livraria/preco.py"
 ## meet with hugo
-    alias hugo="firefox https://meet.google.com/zbb-xsxg-swe"
+    alias hugo="google-chrome https://meet.google.com/zbb-xsxg-swe"
+## open gmail
+    alias gmail="google-chrome https://accounts.google.com/"
+## open tutanota
+    alias tuta="google-chrome https://mail.tutanota.com/"
+## open linkedin
+    alias linkedin="google-chrome https://www.linkedin.com/login"
+## open whatsapp
+    alias whats="google-chrome https://web.whatsapp.com/"
 ## "doc" to open documentation wiki
     alias doc="vim ~/files/nerd/doc/index.md"
 ## "edu" to open edu wiki
