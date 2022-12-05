@@ -18,6 +18,7 @@
     set smtp_url = "smtp://$my_email_adress@$my_smtp:587/"
     set smtp_pass = "$my_pass"
 ## connecting the folders
+    unmailboxes *
     set from = "$my_email_adress"
     set folder = "imaps://$my_imap:993"
     set spoolfile = "=Inbox"

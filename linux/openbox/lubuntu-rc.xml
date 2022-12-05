@@ -78,30 +78,13 @@
     <applications>
         <application class="*">
             <decor>no</decor>
-            <position force="yes">
-                <x>Center</x>
-                <y>Center</y>
-            </position>
-            <size>
-                <width>100%</width>
-                <height>100%</height>
-            </size>
+            <maximized>yes</maximized>
         </application>
     </applications>
     <keyboard>
         <!-- windows management -->
         <keybind key="C-4">
             <action name="Close"/>
-        </keybind>
-        <keybind key="F3">
-            <action name="Move">
-                <edge>bottomleft</edge>
-            </action>
-        </keybind>
-        <keybind key="F4">
-            <action name="Resize">
-                <edge>bottomleft</edge>
-            </action>
         </keybind>
         <keybind key="A-Down">
             <action name="Unmaximize">
