@@ -70,26 +70,52 @@
 "    \'goto_prev_year': '>',
 "    \}
 "> VimWiki
-">> setting the wiki paths. setting Markdown syntax
-    let g:vimwiki_list = [
+">> setting wiki paths and names. setting Markdown syntax
+        let g:vimwiki_list = [
                           \{ 'path': '~/files/me/org/',
                           \  'syntax': 'markdown',
-                          \  'ext': '.md' },
+                          \  'ext': '.md',
+                          \  'name': 'org' },
                           \{ 'path': '~/files/me/org/dev',
                           \  'syntax': 'markdown',
-                          \  'ext': '.md' },
+                          \  'ext': '.md',
+                          \  'name': 'dev' },
                           \{ 'path': '~/files/me/org/mpc',
                           \  'syntax': 'markdown',
-                          \  'ext': '.md' },
+                          \  'ext': '.md',
+                          \  'name': 'mpc' },
                           \{ 'path': '~/files/me/org/research',
                           \  'syntax': 'markdown',
-                          \  'ext': '.md' },
+                          \  'ext': '.md', 
+                          \  'name': 'math' },
                           \{ 'path': '~/files/me/org/pessoal',
                           \  'syntax': 'markdown',
-                          \  'ext': '.md' } 
+                          \  'ext': '.md',
+                          \  'name': 'me' },
+                          \{ 'path': '~/files/nerd/doc',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'doc' }
                         \]
-">> move to the primary wiki
-    autocmd filetype md inoremap <C-CR> <esc><cr>
+">> move to the index page
+"    let g:vimwiki_key_mappings =
+"                            \ { 'all_maps': 0,
+"                            \   'global': 0,
+"                            \   'headers': 0,
+"                            \  'text_objs': 0,
+"                            \   'table_format': 0,
+"                            \   'table_mappings': 0,
+"                            \   'lists': 0,
+"                            \   'links': 0,
+"                            \   'html': 0,
+""                            \   'mouse': 0,
+                            \ }
+">> ctrl+enter to follow links. ctrl+bksp to go back
+    nmap <cr> <plug>VimwikiFollowLink<cr>
+    imap <c-[> <esc><plug>VimwikiFollowLink<cr>
+    nmap <backspace> <plug>VimwikiGoBackLink<cr>
+    imap <c-backspace> <esc><plug>VimwikiGoBackLink<cr>    
+    " nmap <home> <plug><leader>ws1<cr> 
 
 "TEXT config
 "> Indentation
