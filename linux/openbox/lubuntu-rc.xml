@@ -82,7 +82,7 @@
         </application>
     </applications>
     <keyboard>
-        <!-- windows management -->
+        <!-- keybind for windows management -->
         <keybind key="C-4">
             <action name="Close"/>
         </keybind>
@@ -132,6 +132,12 @@
         <keybind key="F11">
             <action name="ToggleFullscreen"/>
         </keybind>
+        <!-- Keybinding for panel -->
+        <keybind key="C-1">
+            <action name="Execute">
+                <command>xdotool mousemove 0 800 sleep 2 mousemove restore</command>
+            </action>
+        </keybind>
         <!-- Keybinding for buttons -->
         <keybind key="XF86AudioRaiseVolume">
             <action name="Execute">
@@ -143,27 +149,7 @@
                 <command>amixer -q sset Master 3%- unmute</command>
             </action>
         </keybind>
-        <keybind key="XF86AudioMute">
-            <action name="Execute">
-                <command>amixer -q sset Master toggle</command>
-            </action>
-        </keybind>
-        <keybind key="XF86Calculator">
-            <action name="Execute">
-                <command>lxsession-default calculator</command>
-            </action>
-        </keybind>
-        <keybind key="XF86MyComputer">
-            <action name="Execute">
-        <command>lxsession-default file_manager</command>
-            </action>
-        </keybind>
-        <keybind key="XF86PowerOff">
-            <action name="Execute">
-                <command>lxsession-default quit</command>
-            </action>
-        </keybind>
-        <!-- keybindings for particular applications -->
+        <!-- keybindings for applications -->
         <keybind key="Print">
             <action name="Execute">
                 <command>flameshot gui</command>

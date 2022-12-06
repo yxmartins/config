@@ -74,8 +74,6 @@
     alias locate="mlocate -A -b"
     alias lct="mlocate -A -b"
 
-
-
 # PARTICULAR
 ## calculate the price of books
     alias preco="python ~/files/job/livraria/preco.py"
@@ -88,7 +86,7 @@
 ## open linkedin
     alias linkedin="google-chrome https://www.linkedin.com/login"
 ## open whatsapp
-    alias whats="google-chrome https://web.whatsapp.com/"
+    alias whats="firefox -p whatsapp -url=web.whatsapp.com"
 ## "doc" to open documentation wiki
     alias doc="vim ~/files/nerd/doc/index.md"
 ## "edu" to open edu wiki
