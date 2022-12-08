@@ -133,12 +133,17 @@
             <action name="ToggleFullscreen"/>
         </keybind>
         <!-- Keybinding for panel -->
-        <keybind key="C-1">
+        <keybind key="C-Down">
             <action name="Execute">
-                <command>xdotool mousemove 0 800 sleep 2 mousemove restore</command>
+                <command>pkill tint2</command>
             </action>
         </keybind>
-        <!-- Keybinding for buttons -->
+        <keybind key="C-Up">
+            <action name="Execute">
+                <command>tint2</command>
+            </action>
+        </keybind>
+        <!-- Keybinding for special buttons -->
         <keybind key="XF86AudioRaiseVolume">
             <action name="Execute">
                 <command>amixer -q sset Master 3%+ unmute</command>
@@ -165,6 +170,16 @@
                 <command>jumpapp -f -p lxterminal</command>
              </action>
          </keybind>
+         <keybind key="C-0">
+            <action name="Execute">
+                <command>amixer -q sset Master 3%+ unmute</command>
+            </action>
+        </keybind>
+        <keybind key="C-9">
+            <action name="Execute">
+                <command>amixer -q sset Master 3%- unmute</command>
+            </action>
+        </keybind>
     </keyboard>
     <mouse>
     <doubleClickTime>200</doubleClickTime>
