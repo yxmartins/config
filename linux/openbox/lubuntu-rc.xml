@@ -17,7 +17,7 @@
         <primaryMonitor>Active</primaryMonitor>
     </placement>
     <theme>
-        <name>Nightmare-02</name>
+        <name>Lubuntu-default</name>
         <titleLayout>NLIMC</titleLayout>
         <keepBorder>no</keepBorder>
         <animateIconify>no</animateIconify>
@@ -143,7 +143,7 @@
                 <command>tint2</command>
             </action>
         </keybind>
-        <!-- Keybinding for special buttons -->
+        <!-- Keybinding for volume and brightness -->
         <keybind key="XF86AudioRaiseVolume">
             <action name="Execute">
                 <command>amixer -q sset Master 3%+ unmute</command>
@@ -154,22 +154,6 @@
                 <command>amixer -q sset Master 3%- unmute</command>
             </action>
         </keybind>
-        <!-- keybindings for applications -->
-        <keybind key="Print">
-            <action name="Execute">
-                <command>flameshot gui</command>
-            </action>
-        </keybind>
-        <keybind key="F12">
-            <action name="Execute">
-                <command>jumpapp -f -p google-chrome</command>
-            </action>
-        </keybind>
-        <keybind key="F10">
-            <action name="Execute">
-                <command>jumpapp -f -p lxterminal</command>
-             </action>
-         </keybind>
          <keybind key="C-0">
             <action name="Execute">
                 <command>amixer -q sset Master 3%+ unmute</command>
@@ -180,7 +164,33 @@
                 <command>amixer -q sset Master 3%- unmute</command>
             </action>
         </keybind>
-    </keyboard>
+         <keybind key="A-0">
+            <action name="Execute">
+                <command>xbacklight -inc 10%</command>
+            </action>
+        </keybind>
+        <keybind key="A-9">
+            <action name="Execute">
+                <command>xbacklight -dec 10%</command>
+            </action>
+        </keybind>
+       <!-- keybindings for applications -->
+        <keybind key="Print">
+            <action name="Execute">
+                <command>flameshot gui</command>
+            </action>
+        </keybind>
+        <keybind key="F12">
+            <action name="Execute">
+                <command>jumpapp -f -p firefox</command>
+            </action>
+        </keybind>
+        <keybind key="F10">
+            <action name="Execute">
+                <command>jumpapp -f -p lxterminal</command>
+             </action>
+         </keybind>
+     </keyboard>
     <mouse>
     <doubleClickTime>200</doubleClickTime>
     <screenEdgeWarpTime>0</screenEdgeWarpTime>

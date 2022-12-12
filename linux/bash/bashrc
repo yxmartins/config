@@ -1,8 +1,8 @@
 # PROMPT
 ##  display time and the current directory
-    time="01;33m`date +%H:%M`"
+    time="33m`date +%H:%M`"
     time1="\[\033[$time\]"
-    dir1="\[\033[01;32m\]\w\[\033[00m\]"
+    dir1="\[\033[32m\]\w\[\033[00m\]"
     PS1="$dir1\$ "
 
 # INCLUDES
@@ -17,12 +17,12 @@
     fi
     alias bkp="bash ~/files/nerd/dev/sh/sync-script/init.sh" 
 
-## Trsl-Sh
+## Trnsl-Sh
 ### intuitive cli for translate-shell
-    if [ -f ~/files/nerd/dev/sh/trsl-sh/trsl ]; then
-        source  ~/files/nerd/dev/sh/trsl-sh/trsl
+    if [ -f ~/files/nerd/dev/sh/trnsl-sh/trnsl.sh ]; then
+        source  ~/files/nerd/dev/sh/trnsl-sh/trnsl.sh
     fi
-## Ecl-Sh
+## Easycl-Sh
 ### easy command line for bash
     if [ -f ~/files/nerd/dev/sh/easycl-sh/nav ]; then
         source  ~/files/nerd/dev/sh/easycl-sh/nav
@@ -78,13 +78,13 @@
 ## calculate the price of books
     alias preco="python ~/files/job/livraria/preco.py"
 ## meet with hugo
-    alias hugo="google-chrome https://meet.google.com/zbb-xsxg-swe"
+    alias hugo="firefox https://meet.google.com/zbb-xsxg-swe"
 ## open gmail
-    alias gmail="google-chrome https://accounts.google.com/"
+    alias gmail="firefox https://accounts.google.com/"
 ## open tutanota
-    alias tuta="google-chrome https://mail.tutanota.com/"
+    alias tuta="firefox https://mail.tutanota.com/"
 ## open linkedin
-    alias linkedin="google-chrome https://www.linkedin.com/login"
+    alias linkedin="firefox https://www.linkedin.com/login"
 ## open whatsapp
     alias whats="firefox -p whatsapp -url=web.whatsapp.com"
 ## "doc" to open documentation wiki

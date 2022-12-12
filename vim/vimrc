@@ -17,12 +17,14 @@
     set number 
     set laststatus=2 
     set hidden
-">> set left margin. Show "VIM" in the terminal title 
+">> set left margin. Show filename in the terminal tab/window title 
     set numberwidth=2
     set title
 "> Other
-">> opn hyperlinks in firefox
-    let g:netrw_browsex_viewer= "firefox -P user"
+">> open hyperlinks in chrome
+    let g:netrw_browsex_viewer= "google-chrome -P user"
+">> skip .swp files message
+    autocmd SwapExists * let v:swapchoice = "e"
 
 " PLUGIN config
 "> Pathogen as the Plugin Installer 
@@ -45,30 +47,30 @@
         \'menu_fmt': '[@type] @author_all (@year), "@title"'
         \}
 ">> using f5 to compile and open the resulting .pdf
-    autocmd filetype tex nmap <buffer> <f5> :VimtexCompile<cr> i
-    autocmd filetype tex imap <buffer> <f5> <esc> :VimtexCompile<cr> i
+    autocmd filetype tex nnoremap <buffer> <f5> :VimtexCompile<cr> i
+    autocmd filetype tex inoremap <buffer> <f5> <esc> :VimtexCompile<cr> i
 "> Commentary
 ">> comment current line in insert mode with ctrl+l. comment current paragraph with ctrl+p  
-    imap <c-l> <esc>gcc i
-    imap <c-p> <esc>gcap i
-    nmap <c-l> <esc>gcc i
-    nmap <c-p> <esc>gcap i
+    inoremap <c-l> <esc>gcc i
+    inoremap <c-p> <esc>gcap i
+    nnoremap <c-l> <esc>gcc i
+    nnoremap <c-p> <esc>gcap i
 "> SnipMate
 ">> setting the newer version to avoid "SnipMate deprecated" message.
     let g:snipMate = { 'snippet_version' : 1 }
 ">> ctrl+e and ctrl+b to emphasized and bold text
-    autocmd filetype tex imap <buffer> <c-e>  \em<tab>
-    autocmd filetype tex imap <buffer> <c-b> \bf<tab>
-    autocmd filetype tex vmap <buffer> <c-e> c\emph{<esc>"+pi} 
-    autocmd filetype tex vmap <buffer> <c-b> c\emph{<esc>"+pi} 
+    autocmd filetype tex inoremap <buffer> <c-e>  \em<tab>
+    autocmd filetype tex inoremap <buffer> <c-b> \bf<tab>
+    autocmd filetype tex vnoremap <buffer> <c-e> c\emph{<esc>"+pi} 
+    autocmd filetype tex vnoremap <buffer> <c-b> c\emph{<esc>"+pi} 
 "> Calendar-Vim
 ">> ctrl+up and ctrl+down to change month. < and > to change month
-"    let g:calendar_keys = {
-"    \'goto_next_month': '<c-down>',
-"    \'goto_prev_month': '<c-up>',
-"    \'goto_next_year': '<',
-"    \'goto_prev_year': '>',
-"    \}
+    let g:calendar_keys = {
+    \'goto_next_month': '<tab>',
+    \'goto_prev_month': '<s-tab>',
+    \'goto_next_year': '>',
+    \'goto_prev_year': '<',
+    \}
 "> VimWiki
 ">> setting wiki paths and names. setting Markdown syntax
         let g:vimwiki_list = [
@@ -97,27 +99,32 @@
                           \  'ext': '.md',
                           \  'name': 'doc' }
                         \]
-">> move to the index page
+">> disabling default keybindings
     let g:vimwiki_key_mappings =
-                            \ { 'all_maps': 1,
-                           \   'global': 1,
+                            \ { 'all_maps': 0,
+                           \   'global': 0,
                             \   'headers': 1,
-                            \  'text_objs': 1,
-                            \   'table_format': 1,
-                            \   'table_mappings': 1,
+                            \  'text_objs': 0,
+                            \   'table_format': 0,
+                            \   'table_mappings': 0,
                             \   'lists': 1,
-                            \   'links': 1,
-                            \   'html': 1,
-                            \   'mouse': 1,
+                            \   'links': 0,
+                            \   'html': 0,
+                            \   'mouse': 0,
                             \ }
-">> ctrl+enter to follow links. ctrl+bksp to go back
-    autocmd filetype vimwiki nmap <cr> :VimwikiFollowLink<cr>
-    autocmd filetype vimwiki imap <c-[> <esc><cr>
-    autocmd filetype vimwiki nmap <c-]> :VimwikiGoBackLink<cr>
-    autocmd filetype vimwiki imap <c-]> <esc><c-]><cr>
-">> go to index.md with ctrl+1. Go to main index.md with ctrl+0
-    autocmd filetype vimwiki nmap 0 \ws 1<cr> 
-    autocmd filetype vimwiki nmap 1 :VimwikiIndex<cr>
+">> "ctrl+enter" to follow links. "ctrl+bksp" to go back
+    autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
+    autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
+    autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
+    autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
+">> go to index.md with "ctrl+1". Go to main index.md with "ctrl+0"
+    autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
+    autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
+">> "rn" to rename a file
+    autocmd filetype vimwiki nnoremap rn :VimwikiRenameFile<cr>
+">> "d" to delete a file
+    autocmd filetype vimwiki nnoremap d :VimwikiDeleteFile<cr>
+ 
 
 "TEXT config
 "> Indentation
@@ -146,15 +153,15 @@
 ">> allowing to set a color scheme for a fixed filetype.
     autocmd BufWinEnter,FileType tex colorscheme vimtex-colors
 "> spelling
-">> allow spell checker in specific languages. fixing spell language.
+">> enable spell checker in specific languages. fixing spell language.
     autocmd FileType latex,tex,md,markdown setlocal spell
     set spelllang=en_us,pt_br
-">> ctrl+up to add word to dictionary
-    nmap <c-up> zg i
-    imap <c-up> <esc> zg i
-">> ctrl+down to display the spell hints
-    nmap <c-down> z=i
-    imap <c-down> <esc> z=i
+">> ctrl+n to add word to dictionary
+    nnoremap <c-n>zg i
+    inoremap <c-n> <esc>zg i
+">> ctrl+b to display the spell hints
+    nnoremap <c-b> z=i
+    inoremap <c-b> <esc>z=i
 
 "> Mailing
 ">> set up syntax highlighting for mutt
@@ -162,68 +169,67 @@
 
 " HOTKEYS config
 "> Moving
-">> esc in normal nome move to insert mode
-    nmap <esc> i
-">> tab/backspace in normal mode
-    nmap <tab> i<tab><esc>
-    nmap <backspace> i<backspace><right><esc>
-">> a/z in normal mode move to beggining/ending of line
-    nmap a ^  
+">> esc in normal mode move to insert mode
+    nnoremap <esc> i
+">> tab in normal mode
+    nnoremap <tab> i<tab><esc>
+">> a in normal mode move to beggining of line
+    nnoremap a ^hh  
 ">> use cursor arrows to move through long lines, ignoring wrapping.
     inoremap <silent> <down> <c-r>=pumvisible() ? "\<lt>down>" : "\<lt>c-o>gj"<cr>
     inoremap <silent> <up> <c-r>=pumvisible() ? "\<lt>up>" : "\<lt>c-o>gk"<cr>
-    nmap <down> gj
-    nmap <up> gk
+    nnoremap <down> gj
+    nnoremap <up> gk
 ">> home/end button goes to top/end of the page
-    imap <home> <esc> ggi
-    nmap <home> ggi
-    imap <end> <esc> GGi
-    nmap <end> GGi
+    inoremap <home> <esc> ggi
+    nnoremap <home> ggi
+    inoremap <end> <esc> GGi
+    nnoremap <end> GGi
 "> Search
 ">> use ctrl+f to search. ctrl+down to move along results.
-    nmap <silent> <c-f> /
-    imap <silent> <c-f> <esc>/
-    nmap <c-down> n
+    nnoremap <silent> <c-f> /
+    inoremap <silent> <c-f> <esc>/
+    snoremap <c-down> n
 "> Editing
-">> delete with backspace in visual mode 
+">> delete with backspace in normal mode and visual mode 
     vnoremap <bs> d<esc>i
 ">> ctrl+x to cut, crtl+c to copy and ctrl+v to paste (in the normal mode)
-    nmap <c-k> <c-v>
-    imap <c-k> <esc><c-v> 
-    vmap <c-x> c
-    imap <c-x> <esc>vc
-    vmap <c-c> "+yi
-    imap <c-v> <esc> "+pi
+    nnoremap <c-k> <c-v>
+    inoremap <c-k> <esc><c-v> 
+    vnoremap <c-x> c
+    inoremap <c-x> <esc>vc
+    vnoremap <c-c> "+yi
+    inoremap <c-v> <esc> "+pi
 ">> copy and paste directly to clipboard
     set clipboard=unnamedplus
 ">> ctrl+z to undo and ctrl+r to redo
     noremap <c-z> u
     inoremap <c-z> <c-o>u
-    imap <c-r> <esc><c-r>i
+    inoremap <c-r> <esc><c-r>i
 "> Selecting
 ">> use shift+arrows to select text.
-    nmap <s-up> v<up>
-    nmap <s-down> v<down>
-    nmap <s-left> v<left>
-    nmap <s-right> v<right>
-    vmap <s-up> <up>
-    vmap <s-down> <down>
-    vmap <s-left> <left>
-    vmap <s-right> <right>
-    imap <s-up> <esc>v<up>
-    imap <s-down> <esc>v<down>
-    imap <s-left> <esc>v<left>
-    imap <s-right> <esc>v<right>
+    nnoremap <s-up> v<up>
+    nnoremap <s-down> v<down>
+    nnoremap <s-left> v<left>
+    nnoremap <s-right> v<right>
+    vnoremap <s-up> <up>
+    vnoremap <s-down> <down>
+    vnoremap <s-left> <left>
+    vnoremap <s-right> <right>
+    inoremap <s-up> <esc>v<up>
+    inoremap <s-down> <esc>v<down>
+    inoremap <s-left> <esc>v<left>
+    inoremap <s-right> <esc>v<right>
 ">> use ctrl+a to select all
-    nmap <c-a> ggvGG$
-    imap <c-a> <esc>ggvGG$
+    nnoremap <c-a> ggvGG$
+    inoremap <c-a> <esc>ggvGG$
 "> General
 ">> save with ctrl+s
-    nmap <c-s> :w!<cr>i
-    imap <c-s> <esc> :w!<cr>i
-    vmap <c-s> <esc> :w!<cr>
+    nnoremap <c-s> :w!<cr>i
+    inoremap <c-s> <esc> :w!<cr>i
+    vnoremap <c-s> <esc> :w!<cr>
 ">> quit without saving with ctrl+q
-    nmap <c-q> :q!<cr>
-    imap <c-q> <esc> :q!<cr>
-    vmap <c-q> <esc> :q!<cr>
+    nnoremap <c-q> :q!<cr>
+    inoremap <c-q> <esc> :q!<cr>
+    vnoremap <c-q> <esc> :q!<cr>
 
