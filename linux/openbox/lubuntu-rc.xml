@@ -17,7 +17,7 @@
         <primaryMonitor>Active</primaryMonitor>
     </placement>
     <theme>
-        <name>Lubuntu-default</name>
+        <name>Minimal</name>
         <titleLayout>NLIMC</titleLayout>
         <keepBorder>no</keepBorder>
         <animateIconify>no</animateIconify>
