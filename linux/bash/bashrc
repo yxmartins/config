@@ -57,7 +57,7 @@
     alias cal="calcurse"
     alias c="calcurse"
 ## make a backup and shutdown quickly
-    alias shutdown="bkp && shutdown -h now" 
+    alias shutdown="shutdown -h now" 
     alias shtdw="bkp && shutdown -h now"
     alias shdw="bkp && shutdown -h now"
 ## display the 256 colors
