@@ -1,0 +1,193 @@
+
+"> BASIC CONFIG
+
+" edit files with vim in insertmode
+set vicmd='sudo vim  -c startinsert'
+
+" perform directory actions internally to vifm
+set syscalls
+
+" delete means moving to trash
+set trash
+
+" save automatically on restarting vifm.
+set vifminfo=dhistory,chistory,state,tui,shistory,
+            \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+" how many directories to store in the directory history.
+set history=100
+
+" resolve symbolic links on l or Enter.
+set nofollowlinks
+
+" Natural sort of (version) numbers within text.
+"set sortnumbers
+
+" Maximum number of changes that can be undone.
+"set undolevels=100
+
+" help file with highlight and hyperlinks.
+set vimhelp
+
+" do not run an executable file with Enter, l or Right
+    set norunexec
+
+" setting the colorscheme
+    colorscheme Minimal
+
+" time format in file list.
+    set timefmt='%Y/%m/%d %H:%M'
+
+">> Completions
+">>> list of results for tab completion in command-line mode
+    set wildmenu
+" Display suggestions in all modes
+    set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+
+">> Search
+">>> smart search for case
+    set ignorecase
+    set smartcase
+">>> highlight search results automatically
+    set hlsearch
+">>> search while typing
+    set incsearch
+
+" Try to leave some space from cursor to upper/lower border in lists
+set scrolloff=4
+
+" Don't do too many requests to slow file systems
+if !has('win')
+    set slowfs=curlftpfs
+endif
+
+" Set custom status line look
+"set statusline=""
+
+"> COMMAND CONFIG
+
+    command! zip zip -r %c.zip %f
+    command! unzip unzip %c
+    command! tar tar -xf %c
+    command! make !!make %a
+    command! d mv %c ~/.trash
+    command! D sudo rm -r %c
+    command! mkd sudo mkdir %a
+    command! mkf sudo touch %a
+    command! mv sudo mv %a
+    command! cp sudo cp -r %a
+
+"> KEYBINDINGS CONFIG
+
+"> "ctrl+q" to return to shell in current directory
+    nnoremap <c-q> :shell<cr>
+
+"> "s" for changing the sort list
+    nnoremap s :sort<cr>
+
+"> "w" to toggle visibility of preview window
+    nnoremap w :view<cr>
+
+"> "h" to toggle visibility of dot files
+    nnoremap h za
+
+"> "rn" to rename file
+    nnoremap rn cw
+
+" Interaction with system clipboard
+if has('win')
+    " Yank current directory path to Windows clipboard with forward slashes
+    nnoremap yp :!echo %"d:gs!\!/! %i | clip<cr>
+    " Yank path to current file to Windows clipboard with forward slashes
+    nnoremap yf :!echo %"c:gs!\!/! %i | clip<cr>
+elseif $WAYLAND_DISPLAY
+    if executable('wl-copy')
+        " Yank current directory path into primary and selection clipboards
+        nnoremap yd :!echo -n %d | wl-copy %i &&
+                    \ echo -n %d | wl-copy -p %i<cr>
+        " Yank current file path into into primary and selection clipboards
+        nnoremap yf :!echo -n %c:p | wl-copy %i &&
+                    \ echo -n %c:p | wl-copy -p %i<cr>
+    endif
+elseif $DISPLAY
+    if executable('xclip')
+        " Yank current directory path into the clipboard
+        nnoremap yd :!echo %d | xclip %i<cr>
+        " Yank current file path into the clipboard
+        nnoremap yf :!echo %c:p | xclip %i<cr>
+    elseif executable('xsel')
+        " Yank current directory path into primary and selection clipboards
+        nnoremap yd :!echo -n %d | xsel --input --primary %i &&
+                    \ echo -n %d | xsel --clipboard --input %i<cr>
+        " Yank current file path into into primary and selection clipboards
+        nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
+                    \ echo -n %c:p | xsel --clipboard --input %i<cr>
+    endif
+endif
+
+"> FILETYPE CONFIG
+
+" Pdf
+filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
+fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+
+" PostScript
+filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
+        \ {View in zathura}
+        \ zathura %f,
+        \ {View in gv}
+        \ gv %c %i &,
+
+" Djvu
+filextype {*.djvu},<image/vnd.djvu>
+        \ {View in zathura}
+        \ zathura %f,
+        \ {View in apvlv}
+        \ apvlv %f,
+" Web
+filextype {*.xhtml,*.html,*.htm},<text/html>
+        \ {Open with vieb}
+        \ vieb %f %i &,
+        \ {Open with firefox}
+        \ firefox %f &,
+filetype {*.xhtml,*.html,*.htm},<text/html> links, lynx
+
+" Images
+filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+        \ {View in sxiv}
+        \ sxiv %f,
+        \ {View in gpicview}
+        \ gpicview %c,
+        \ {View in shotwell}
+        \ shotwell,
+fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+         \ identify %f
+
+
+" Syntax highlighting in preview
+
+" 256-color terminal
+    fileviewer *.[ch],*.[ch]pp highlight -O xterm -s dante --syntax c %c
+    fileviewer Makefile,Makefile.* highlight -O xterm -s dante --syntax make %c
+"
+" 16-color terminal
+fileviewer *.c,*.h highlight -O ansi -s dante %c
+"
+" Or leave it for automatic detection
+" fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+
+" Displaying pictures in terminal
+ fileviewer *.jpg,*.png shellpic %c
+
+fileviewer *.py highlight -O xterm256 --syntax python
+fileviewer *.json highlight -O xterm256 --syntax json
+fileviewer *.xml highlight -O xterm256 --syntax xml
+fileviewer *.xhtml highlight -O xterm256 --syntax html
+fileviewer *.opf highlight -O xterm256 --syntax xml
+fileviewer *.md highlight -O xterm256 --syntax markdown
+" fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
+fileviewer *.html,*.go,*.css,*.c highlight -O xterm256 -s dante %c
+
+
+
+
