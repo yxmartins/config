@@ -73,7 +73,13 @@
 ## "locate" or "lct" to locate files
     alias locate="mlocate -A -b"
     alias lct="mlocate -A -b"
-
+## "pdc -md" or "pandoc -md" to convert markdown to pdf using pandoc. 
+    function pdc(){
+    if [[ "$1" = "-md" ]] && [[ "$2" = "-pdf" ]]; then
+        name=$(basename "$3" .md)
+        pandoc --table-of-contents --number-sections -f markdown -t pdf -o $name.pdf $3
+    fi
+    }
 # PARTICULAR
 ## calculate the price of books
     alias preco="python ~/files/job/livraria/preco.py"
