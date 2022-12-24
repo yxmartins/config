@@ -1,10 +1,9 @@
-
 " BASIC config
-"> Modes
-">> do not use vi compatibility mode. 
-    set nocompatible
-"> Cursor and Mouse
-">> show cursor in any mode. allow use of mouse in any mode. fast scroll.
+"> Modes  
+">> do not use vi compatibility mode.  
+    set nocompatible 
+"> Cursor and Mouse  
+">> show cursor in any mode. allow use of mouse in any mode. fast scroll. 
     set ruler
     set mouse=a
     set ttyfast
@@ -16,116 +15,15 @@
 ">> show line numbers. show current mode. allow reuse the same windows.   
     set number 
     set laststatus=2 
-    set hidden
+    set hidden 
 ">> set left margin. Show filename in the terminal tab/window title 
-    set numberwidth=2
-    set title
-"> Other
-">> open hyperlinks in chrome
-    let g:netrw_browsex_viewer= "google-chrome -P user"
-">> skip .swp files message
-    autocmd SwapExists * let v:swapchoice = "e"
-
-" PLUGIN config
-"> Pathogen as the Plugin Installer 
-    execute pathogen#infect()
-"> VimTex
-">> choosing the pdf reader and the compiler configuration. avoiding the log box.
-    let g:tex_flavor = 'latex'          
-    let g:vimtex_view_method = 'zathura'  
-    let g:vimtex_compiler_latexmk= {'options' : [ 
-        \'-pdf', 
-        \'-shell-escape',
-        \'-verbose', 
-        \'-file-line-error', 
-        \'-synctex=1', 
-        \'-interaction=nonstopmode',
-        \],}
-">> .bibtex autocomplete (doesn't working)
-    let g:vimtex_quickfix_enabled = 0   
-    let g:vimtex_complete_bib = {
-        \'menu_fmt': '[@type] @author_all (@year), "@title"'
-        \}
-">> using f5 to compile and open the resulting .pdf
-    autocmd filetype tex nnoremap <buffer> <f5> :VimtexCompile<cr> i
-    autocmd filetype tex inoremap <buffer> <f5> <esc> :VimtexCompile<cr> i
-"> Commentary
-">> comment current line in insert mode with ctrl+l. comment current paragraph with ctrl+p  
-    inoremap <c-l> <esc>gcc i
-    inoremap <c-p> <esc>gcap i
-    nnoremap <c-l> <esc>gcc i
-    nnoremap <c-p> <esc>gcap i
-"> SnipMate
-">> setting the newer version to avoid "SnipMate deprecated" message.
-    let g:snipMate = { 'snippet_version' : 1 }
-">> ctrl+e and ctrl+b to emphasized and bold text
-    autocmd filetype tex inoremap <buffer> <c-e>  \em<tab>
-    autocmd filetype tex inoremap <buffer> <c-b> \bf<tab>
-    autocmd filetype tex vnoremap <buffer> <c-e> c\emph{<esc>"+pi} 
-    autocmd filetype tex vnoremap <buffer> <c-b> c\emph{<esc>"+pi} 
-"> Calendar-Vim
-">> ctrl+up and ctrl+down to change month. < and > to change month
-    let g:calendar_keys = {
-    \'goto_next_month': '<tab>',
-    \'goto_prev_month': '<s-tab>',
-    \'goto_next_year': '>',
-    \'goto_prev_year': '<',
-    \}
-"> VimWiki
-">> setting wiki paths and names. setting Markdown syntax
-        let g:vimwiki_list = [
-                          \{ 'path': '~/files/me/org/',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'org' },
-                          \{ 'path': '~/files/me/org/dev',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'dev' },
-                          \{ 'path': '~/files/me/org/mpc',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'mpc' },
-                          \{ 'path': '~/files/me/org/research',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md', 
-                          \  'name': 'math' },
-                          \{ 'path': '~/files/me/org/pessoal',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'me' },
-                          \{ 'path': '~/files/nerd/doc',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'doc' }
-                        \]
-">> disabling some default keybindings
-    let g:vimwiki_key_mappings =
-                            \ { 'all_maps':1 ,
-                           \   'global': 0,
-                            \   'headers': 1,
-                            \  'text_objs': 0,
-                            \   'table_format': 0,
-                            \   'table_mappings': 0,
-                            \   'lists': 1,
-                            \   'links': 0,
-                            \   'html': 0,
-                            \   'mouse': 0,
-                            \ }
-
-">> "ctrl+[" to follow links. "ctrl+]" to go back
-    autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
-    autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
-    autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
-    autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
-">> go to index.md with "1". Go to main index.md with "0"
-    autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
-    autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
-">> "rn" to rename a file
-    autocmd filetype vimwiki nnoremap rn :VimwikiRenameFile<cr>
-">> "d" to delete a file
-    autocmd filetype vimwiki nnoremap d :VimwikiDeleteFile<cr>
- 
+    set numberwidth=2 
+    set title 
+"> Other 
+">> open hyperlinks in chrome 
+    let g:netrw_browsex_viewer= "google-chrome -P user" 
+">> skip .swp files message 
+    autocmd SwapExists * let v:swapchoice = "e" 
 
 "TEXT config
 "> Indentation
@@ -154,57 +52,65 @@
 ">> allowing to set a color scheme for a fixed filetype.
     autocmd BufWinEnter,FileType tex colorscheme vimtex-colors
 "> spelling
-">> enable spell checker in specific languages. fixing spell language.
+">> enable spell checker in specific programming languages. setting spelling languages.
     autocmd FileType latex,tex,md,markdown setlocal spell
     set spelllang=en_us,pt_br
-">> ctrl+n to add word to dictionary
-    nnoremap <c-n>zg i
-    inoremap <c-n> <esc>zg i
-">> ctrl+b to display the spell hints
-    nnoremap <c-b> z=i
-    inoremap <c-b> <esc>z=i
+">> '\.' to add word to dictionary. '\/' to display the spell hints
+    nmap \. zgi
+    imap \. <esc>zg i
+    nmap \/ z=i
+    imap \/ <esc>z=i
 
 "> Mailing
 ">> set up syntax highlighting for mutt
     au bufread,bufnewfile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt* :set ft=mail
 
-" HOTKEYS config
+" HOTKEYS config 
 "> Moving
 ">> esc in normal mode move to insert mode
     nnoremap <esc> i
 ">> tab in normal mode
     nnoremap <tab> i<tab><esc>
-">> a in normal mode move to beggining of line
-    nnoremap a ^hh  
+">> 'a' (resp. 'e') in normal mode move to beggining/ending of line
+    nnoremap a ^hh
+    nnoremap e $i<right><space><esc>
 ">> use cursor arrows to move through long lines, ignoring wrapping.
     inoremap <silent> <down> <c-r>=pumvisible() ? "\<lt>down>" : "\<lt>c-o>gj"<cr>
     inoremap <silent> <up> <c-r>=pumvisible() ? "\<lt>up>" : "\<lt>c-o>gk"<cr>
     nnoremap <down> gj
     nnoremap <up> gk
-">> home/end button goes to top/end of the page
+">> 'home/end' goes to top/end of the page
     inoremap <home> <esc> ggi
     nnoremap <home> ggi
     inoremap <end> <esc> GGi
     nnoremap <end> GGi
 "> Search
-">> use ctrl+f to search. ctrl+down to move along results.
-    nnoremap <silent> <c-f> /
-    inoremap <silent> <c-f> <esc>/
-    snoremap <c-down> n
+">> 'ctrl+f' to search. '\down' and '\up' to move along results.
+    nnoremap <c-f> /
+    inoremap <c-f> <esc>/
+    nnoremap \<down> n
+    nnoremap \<up> N
+    inoremap \<down> <esc>n
+    nnoremap \<up> <esc>N
+
 "> Editing
-">> delete with backspace in normal mode and visual mode 
+">> 'space' and 'backspace' in normal mode and visual mode 
+    vnoremap <space> <esc>i<space><right><esc>
+    nnoremap <space> i<space><right><esc>
     vnoremap <bs> d<esc>i
-    nnoremap <bs> d
-">> ctrl+x to cut, crtl+c to copy and ctrl+v to paste (in the normal mode)
-    nnoremap <c-k> <c-v>
-    inoremap <c-k> <esc><c-v> 
-    vnoremap <c-x> c
-    inoremap <c-x> <esc>vc
-    vnoremap <c-c> "+yi
-    inoremap <c-v> <esc> "+pi
-">> copy and paste directly to clipboard
+    nnoremap <bs> i<bs><right><esc>
+ ">> copy and paste directly to clipboard
     set clipboard=unnamedplus
-">> ctrl+z to undo and ctrl+r to redo
+">> 'ctrl+x' to cut, 'crtl+c' to copy and 'ctrl+v' to paste (in the normal mode)
+    nmap \\ad42 <c-v>
+    imap \\ad43 <c-v>
+    nmap \\ad44 <c-c>
+    vmap \\ad45 <c-c>
+    imap \\ad46 <c-c>
+    vmap <c-x> c
+    vmap <c-c> yi
+    imap <c-v> <esc> pi
+">> ctrl+z to undo and ctrl+r to redo 
     noremap <c-z> u
     inoremap <c-z> <c-o>u
     inoremap <c-r> <esc><c-r>i
@@ -222,7 +128,7 @@
     inoremap <s-down> <esc>v<down>
     inoremap <s-left> <esc>v<left>
     inoremap <s-right> <esc>v<right>
-">> use ctrl+a to select all
+">> "ctrl+a" to select all
     nnoremap <c-a> ggvGG$
     inoremap <c-a> <esc>ggvGG$
 "> General
@@ -230,8 +136,110 @@
     nnoremap <c-s> :w!<cr>i
     inoremap <c-s> <esc> :w!<cr>i
     vnoremap <c-s> <esc> :w!<cr>
-">> quit without saving with ctrl+q
+">> quit without saving with "ctrl+q"
     nnoremap <c-q> :q!<cr>
     inoremap <c-q> <esc> :q!<cr>
     vnoremap <c-q> <esc> :q!<cr>
+
+" PLUGIN config
+"> Pathogen as the Plugin Installer 
+    execute pathogen#infect()
+"> VimTex
+">> choosing the pdf reader and the compiler configuration. avoiding the log box.
+    let g:tex_flavor = 'latex'          
+    let g:vimtex_view_method = 'zathura'  
+    let g:vimtex_compiler_latexmk= {'options' : [ 
+        \'-pdf', 
+        \'-shell-escape',
+        \'-verbose', 
+        \'-file-line-error', 
+        \'-synctex=1', 
+        \'-interaction=nonstopmode',
+        \],}
+">> .bibtex autocomplete (doesn't working)
+    let g:vimtex_quickfix_enabled = 0   
+    let g:vimtex_complete_bib = {
+        \'menu_fmt': '[@type] @author_all (@year), "@title"'
+        \}
+">> 'f5' to compile and open the resulting .pdf
+    autocmd filetype tex nnoremap <buffer> <f5> :VimtexCompile<cr> i
+    autocmd filetype tex inoremap <buffer> <f5> <esc> :VimtexCompile<cr> i
+"> Commentary
+">> comment current line in insert mode with '\\l'. comment current paragraph with '\\p'  
+    imap \\l <esc>gcc i
+    imap \\p <esc>gcap i
+    nmap \\l <esc>gcc i
+    nmap \\p <esc>gcap i
+"> SnipMate
+">> setting the newer version to avoid 'SnipMate deprecated' message.
+    let g:snipMate = { 'snippet_version' : 1 }
+">> ctrl+e and ctrl+b to emphasized and bold text
+    autocmd filetype tex inoremap <buffer> <c-e>  \em<tab>
+    autocmd filetype tex inoremap <buffer> <c-b> \bf<tab>
+    autocmd filetype tex vnoremap <buffer> <c-e> c\emph{<esc>"+pi} 
+    autocmd filetype tex vnoremap <buffer> <c-b> c\emph{<esc>"+pi} 
+"> Calendar-Vim
+">> 'tab' and 'shift+tab' to change month. '<' and '>' to change year
+    let g:calendar_keys = {
+    \'goto_next_month': '<tab>',
+    \'goto_prev_month': '<s-tab>',
+    \'goto_next_year': '>',
+    \'goto_prev_year': '<',
+    \}
+"> VimWiki
+">> setting wiki paths and names. setting Markdown syntax
+        let g:vimwiki_list = [
+                          \{ 'path': '~/files/me/org/',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'org' },
+                          \{ 'path': '~/files/me/org/dev',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'dev' },
+                          \{ 'path': '~/files/me/org/mpc',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'mpc' },
+                          \{ 'path': '~/files/math/ideas',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md', 
+                          \  'name': 'ideas' },
+                          \{ 'path': '~/files/me/org/pessoal',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'me' },
+                          \{ 'path': '~/files/nerd/doc',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'doc' }
+                        \]
+">> setting Markdown syntax highlight instead of vimwiki syntax highlight
+"    autocmd FileType vimwiki setlocal syntax=markdown
+">> disabling some default keybindings
+    let g:vimwiki_key_mappings =
+                            \ { 'all_maps':1 ,
+                           \   'global': 0,
+                            \   'headers': 1,
+                            \  'text_objs': 0,
+                            \   'table_format': 0,
+                            \   'table_mappings': 0,
+                            \   'lists': 1,
+                            \   'links': 0,
+                            \   'html': 0,
+                            \   'mouse': 0,
+                            \ }
+
+">> 'ctrl+[' to follow links. 'ctrl+]' to go back
+    autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
+    autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
+    autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
+    autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
+">> go to main index.md with '1'. Go to main index.md with '0'
+    autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
+    autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
+">> 'rn' to rename a file
+    autocmd filetype vimwiki nnoremap rn :VimwikiRenameFile<cr>
+">> 'd' to delete a file
+    autocmd filetype vimwiki nnoremap d :VimwikiDeleteFile<cr>
 
