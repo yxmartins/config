@@ -99,7 +99,7 @@
                           \  'ext': '.md',
                           \  'name': 'doc' }
                         \]
-">> disabling default keybindings
+">> disabling some default keybindings
     let g:vimwiki_key_mappings =
                             \ { 'all_maps':1 ,
                            \   'global': 0,
@@ -112,12 +112,13 @@
                             \   'html': 0,
                             \   'mouse': 0,
                             \ }
-">> "ctrl+enter" to follow links. "ctrl+bksp" to go back
+
+">> "ctrl+[" to follow links. "ctrl+]" to go back
     autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
     autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
     autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
     autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
-">> go to index.md with "ctrl+1". Go to main index.md with "ctrl+0"
+">> go to index.md with "1". Go to main index.md with "0"
     autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
     autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
 ">> "rn" to rename a file
@@ -193,6 +194,7 @@
 "> Editing
 ">> delete with backspace in normal mode and visual mode 
     vnoremap <bs> d<esc>i
+    nnoremap <bs> d
 ">> ctrl+x to cut, crtl+c to copy and ctrl+v to paste (in the normal mode)
     nnoremap <c-k> <c-v>
     inoremap <c-k> <esc><c-v> 
