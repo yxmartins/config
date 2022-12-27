@@ -1,3 +1,4 @@
+\documentclass[twoside,a4paper, 11pt,openany]{article}
 % STRUCTURE
 %% Title Page
 \usepackage{titling}
@@ -6,7 +7,7 @@
             \vskip2em
             \par \end{center}
         \begin{center}\large#1\end{center}
-        \vskip 5em}%
+        \vskip5em}%
     }
 %% Header and Footer
 %\usepackage{fancyhdr}
@@ -80,11 +81,14 @@
         \newtheorem{remark}[theorem]{Remark}
         \newtheorem{exercise}[theorem]{Exercise}
 %% Spacing
-%\usepackage{indentfirst} 
-%\usepackage{parskip}
-%    \setlength{\parindent}{15pt}
-%\usepackage[letterspace=120]{microtype}
+\usepackage{indentfirst} 
+\usepackage{parskip}
+    \setlength{\parindent}{15pt}
+\usepackage[letterspace=120]{microtype}
 
 % CUSTOM
 %% New Commands
 \usepackage{/home/yurixm/files/config/tex/commands}
+\begin{document}
+$body$
+\end{document}

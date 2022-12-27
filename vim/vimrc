@@ -23,7 +23,9 @@
 ">> open hyperlinks in chrome 
     let g:netrw_browsex_viewer= "google-chrome -P user" 
 ">> skip .swp files message 
-    autocmd SwapExists * let v:swapchoice = "e" 
+    autocmd SwapExists * let v:swapchoice = "e"
+">> use bash in interactive mode to access .bashrc from vim
+    set shellcmdflag=-ic
 
 "TEXT config
 "> Indentation
@@ -55,11 +57,11 @@
 ">> enable spell checker in specific programming languages. setting spelling languages.
     autocmd FileType latex,tex,md,markdown setlocal spell
     set spelllang=en_us,pt_br
-">> '\.' to add word to dictionary. '\/' to display the spell hints
-    nmap \. zgi
-    imap \. <esc>zg i
-    nmap \/ z=i
-    imap \/ <esc>z=i
+">> '\\n' to add word to dictionary. '\\m' to display the spell hints
+    nnoremap \\n zgi
+    inoremap \\n <esc>zg i
+    nnoremap \\m z=i
+    inoremap \\m <esc>z=i
 
 "> Mailing
 ">> set up syntax highlighting for mutt
@@ -92,24 +94,21 @@
     nnoremap \<up> N
     inoremap \<down> <esc>n
     nnoremap \<up> <esc>N
-
 "> Editing
 ">> 'space' and 'backspace' in normal mode and visual mode 
     vnoremap <space> <esc>i<space><right><esc>
     nnoremap <space> i<space><right><esc>
     vnoremap <bs> d<esc>i
     nnoremap <bs> i<bs><right><esc>
- ">> copy and paste directly to clipboard
-    set clipboard=unnamedplus
+">> copy and paste directly to clipboard
+    set clipboard+=unnamed
+    set go+=a
 ">> 'ctrl+x' to cut, 'crtl+c' to copy and 'ctrl+v' to paste (in the normal mode)
-    nmap \\ad42 <c-v>
-    imap \\ad43 <c-v>
-    nmap \\ad44 <c-c>
-    vmap \\ad45 <c-c>
-    imap \\ad46 <c-c>
-    vmap <c-x> c
-    vmap <c-c> yi
-    imap <c-v> <esc> pi
+    vmap <c-x> "+ci
+    imap <c-x> <esc>"+ci
+    vmap <c-c> "+yi
+    imap <c-c> <esc> "+yi
+    imap <c-v> <esc> "+pi
 ">> ctrl+z to undo and ctrl+r to redo 
     noremap <c-z> u
     inoremap <c-z> <c-o>u
@@ -128,22 +127,49 @@
     inoremap <s-down> <esc>v<down>
     inoremap <s-left> <esc>v<left>
     inoremap <s-right> <esc>v<right>
-">> "ctrl+a" to select all
+">> 'ctrl+a' to select all
     nnoremap <c-a> ggvGG$
     inoremap <c-a> <esc>ggvGG$
 "> General
-">> save with ctrl+s
+">> save with 'ctrl+s'
     nnoremap <c-s> :w!<cr>i
     inoremap <c-s> <esc> :w!<cr>i
     vnoremap <c-s> <esc> :w!<cr>
-">> quit without saving with "ctrl+q"
+">> quit without saving with 'ctrl+q'
     nnoremap <c-q> :q!<cr>
     inoremap <c-q> <esc> :q!<cr>
     vnoremap <c-q> <esc> :q!<cr>
+">> '!' to execute a shell command
+"    nnoremap ! :!
 
 " PLUGIN config
 "> Pathogen as the Plugin Installer 
     execute pathogen#infect()
+"> NerdTree
+">> automatically start NerdTree. Start focused on the content window
+    autocmd VimEnter * NERDTree | wincmd p
+">> repeat the NerdTree windown in each new tab
+    autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+">> '\.' to switch focus between NerdTree and file windows
+    nnoremap \. :wincmd p<cr>
+    inoremap \. <esc>:wincmd p<cr>
+">> '\\.' to toggle the NerdTree window
+    nnoremap \\. :NERDTreeToggle<cr>
+    inoremap \\. <esc>:NERDTreeToggle<cr>    
+">> simplify the layout
+    let g:NERDTreeMinimalUI=1
+    let g:NERDTreeMinimalMenu=1
+">> '!' to execute a shell command
+">> refresh the current folder if any changes
+    autocmd BufEnter NERD_tree_* | execute 'normal R'
+    au CursorHold * if exists("t:NerdTreeBufName") | call <SNR>15_refreshRoot() | endif
+">> reload the window if directory is changed
+    augroup DIRCHANGE
+        au!
+        autocmd DirChanged global :NERDTreeCWD
+    augroup END
+">> close nerdtree automatically if it is theonly window open
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "> VimTex
 ">> choosing the pdf reader and the compiler configuration. avoiding the log box.
     let g:tex_flavor = 'latex'          
