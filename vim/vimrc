@@ -104,8 +104,8 @@
     set clipboard+=unnamed
     set go+=a
 ">> 'ctrl+x' to cut, 'crtl+c' to copy and 'ctrl+v' to paste (in the normal mode)
-    vmap <c-x> "+ci
-    imap <c-x> <esc>"+ci
+    vmap <c-x> "+c
+    imap <c-x> <esc>"+c
     vmap <c-c> "+yi
     imap <c-c> <esc> "+yi
     imap <c-v> <esc> "+pi
@@ -139,37 +139,50 @@
     nnoremap <c-q> :q!<cr>
     inoremap <c-q> <esc> :q!<cr>
     vnoremap <c-q> <esc> :q!<cr>
+"> Tabs, Buffers and Tablines
 ">> '!' to execute a shell command
-"    nnoremap ! :!
+    nnoremap ! :!
+">> '\;' to open/close a terminal session
+    nnoremap \; :term ++close<cr>
+    inoremap \; <esc>:term ++close<cr>
+    tnoremap \; <c-d>
+">> '\left' and '\right' to change tab
+    nnoremap \<right> gt
+    inoremap \<right> <esc>gt
+    nnoremap \<left> gT
+    inoremap \<left> <esc>gT
 
 " PLUGIN config
 "> Pathogen as the Plugin Installer 
     execute pathogen#infect()
 "> NerdTree
-">> automatically start NerdTree. Start focused on the content window
+">> automatically start NerdTree focused on the file window
     autocmd VimEnter * NERDTree | wincmd p
-">> repeat the NerdTree windown in each new tab
-    autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-">> '\.' to switch focus between NerdTree and file windows
-    nnoremap \. :wincmd p<cr>
-    inoremap \. <esc>:wincmd p<cr>
-">> '\\.' to toggle the NerdTree window
-    nnoremap \\. :NERDTreeToggle<cr>
-    inoremap \\. <esc>:NERDTreeToggle<cr>    
-">> simplify the layout
-    let g:NERDTreeMinimalUI=1
-    let g:NERDTreeMinimalMenu=1
-">> '!' to execute a shell command
 ">> refresh the current folder if any changes
     autocmd BufEnter NERD_tree_* | execute 'normal R'
-    au CursorHold * if exists("t:NerdTreeBufName") | call <SNR>15_refreshRoot() | endif
+    au CursorHold * if exists("t:NerdTreeBufName") | execute 'normal R'  | endif 
 ">> reload the window if directory is changed
     augroup DIRCHANGE
         au!
         autocmd DirChanged global :NERDTreeCWD
     augroup END
-">> close nerdtree automatically if it is theonly window open
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+">> simplify the layout
+    let g:NERDTreeMinimalUI=1
+    let g:NERDTreeMinimalMenu=1
+    let g:loaded_nerdtree_exec_menuitem = 1
+    let g:loaded_nerdtree_fs_menu = 1
+    let g:NERDTreeWinSize = 20
+">> '\.' or 'shift+tab'  to switch focus between NerdTree and file windows
+    nnoremap \. :wincmd p<cr>
+    inoremap \. <esc>:wincmd p<cr>
+    nnoremap <s-tab> :wincmd p<cr>
+    inoremap <s-tab> <esc>:wincmd p<cr>
+">> '\\.' to toggle the NerdTree window
+    nnoremap \\. :NERDTreeToggle<cr>
+    inoremap \\. <esc>:NERDTreeToggle<cr>    
+">> 'left' and 'right' to change directory.
+    let g:NERDTreeMapUpdir='<left>'
+    let g:NERDTreeMapChdir='<right>'  
 "> VimTex
 ">> choosing the pdf reader and the compiler configuration. avoiding the log box.
     let g:tex_flavor = 'latex'          
