@@ -49,9 +49,16 @@
     alias wf="nmtui"
 ## "z" to open .pdf with zathura
     alias z="zathura"
-## "mail" or "m" to open mutt
+## "m" to open mutt in default account. "mi" to open "ith" account.
     alias mail="mutt"
     alias m="mutt"
+    alias m1="mutt -e 'source ~/.mutt/accounts/1rc'"
+    alias m2="mutt -e 'source ~/.mutt/accounts/2rc'"
+    alias m3="mutt -e 'source ~/.mutt/accounts/3rc'"
+    alias m4="mutt -e 'source ~/.mutt/accounts/4rc'"
+    alias m5="mutt -e 'source ~/.mutt/accounts/5rc'"
+    alias m6="mutt -e 'source ~/.mutt/accounts/6rc'"
+
 ## "nav" or "n" to open broot
     alias nav="vifm"
     alias n="vifm"

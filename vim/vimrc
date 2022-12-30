@@ -155,6 +155,14 @@
 " PLUGIN config
 "> Pathogen as the Plugin Installer 
     execute pathogen#infect()
+"> Netrw
+    let g:netrw_banner = 0
+    let g:netrw_browse_split = 4
+    let g:netrw_altv = 1
+    augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+    augroup END
 "> NerdTree
 ">> automatically start NerdTree focused on the file window
     autocmd VimEnter * NERDTree | wincmd p
