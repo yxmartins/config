@@ -20,8 +20,8 @@
     set numberwidth=2 
     set title 
 "> Other 
-">> open hyperlinks in chrome 
-    let g:netrw_browsex_viewer= "google-chrome -P user" 
+">> open hyperlinks in firefox 
+    let g:netrw_browsex_viewer= "zathura" 
 ">> skip .swp files message 
     autocmd SwapExists * let v:swapchoice = "e"
 ">> use bash in interactive mode to access .bashrc from vim
@@ -156,16 +156,33 @@
 "> Pathogen as the Plugin Installer 
     execute pathogen#infect()
 "> Netrw
+">> sync current and browsing directories
+    let g:netrw_keepdir = 0
+">> hide dot files in startup
+    let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+">> hide banner
     let g:netrw_banner = 0
+
     let g:netrw_browse_split = 4
-    let g:netrw_altv = 1
-    augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
+    let g:netrw_altv = 0
+    let g:netrw_preview = 1
+    let g:netrw_rm_cmd = "rm -rf"
+    let g:netrw_rmdir_cmd = "rm -rf"
+    let g:netrw_rmf_cmd = "rm -rf"
+    let g:netrw_rename_cmd = "mv -r"
+    let g:netrw_special_syntax = 0
+    let g:netrw_hide= 1
+
+    let g:netrw_winsize = 15
+
+    augroup netrw_setup | au!
+        au FileType netrw nmap <buffer> <right> <cr>
+        au FileType netrw nmap <buffer> <left> -
     augroup END
+
 "> NerdTree
 ">> automatically start NerdTree focused on the file window
-    autocmd VimEnter * NERDTree | wincmd p
+">  autocmd VimEnter * NERDTree | wincmd p
 ">> refresh the current folder if any changes
     autocmd BufEnter NERD_tree_* | execute 'normal R'
     au CursorHold * if exists("t:NerdTreeBufName") | execute 'normal R'  | endif 
@@ -186,8 +203,8 @@
     nnoremap <s-tab> :wincmd p<cr>
     inoremap <s-tab> <esc>:wincmd p<cr>
 ">> '\\.' to toggle the NerdTree window
-    nnoremap \\. :NERDTreeToggle<cr>
-    inoremap \\. <esc>:NERDTreeToggle<cr>    
+    nnoremap \\. :Lexplore<cr>
+    inoremap \\. <esc>:Lexplore<cr>    
 ">> 'left' and 'right' to change directory.
     let g:NERDTreeMapUpdir='<left>'
     let g:NERDTreeMapChdir='<right>'  
