@@ -40,8 +40,8 @@
       source  ~/.config/vim-org/script/org
 
 # ALIASES
-## start vim in the insert mode
-    alias v="sudo vim -c startinsert"
+## start vim in Netrw explorer mode 
+    alias v="sudo vim -c 'Lexplore'"
 ## start spotifyd and spotify-tui together
     alias spt="spotifyd && spt"
 ## wifi configuration

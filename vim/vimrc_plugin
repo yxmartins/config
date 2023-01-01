@@ -1,0 +1,153 @@
+
+" NETRW
+"> Layout
+">> hide banner
+    let g:netrw_banner = 0
+">> allow toggle hide
+    let g:netrw_hide= 1
+">> hide dot files in startup
+    let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+">> windows size
+    let g:netrw_winsize = 15
+">> open files in new window
+    if argv(0) ==# '.'
+        let g:netrw_browse_split = 0
+    else
+        let g:netrw_browse_split = 4
+    endif
+">> sync current and browsing directories
+    let g:netrw_keepdir = 1
+">> directories on the top, files below
+    let g:netrw_sort_sequence = '[\/]$,*'
+">> change of directory when opening a file
+    set autochdir
+"> Hotkeys
+">> '\.'  to switch focus between Netrw and file windows. '\\.' to toggle the Netrw window
+    nnoremap \. :wincmd p<cr>cd
+    inoremap \. <esc>:wincmd p<cr>cd
+    nnoremap \\. :Lexplore<cr>cd
+    inoremap \\. <esc>:Lexplore<cr>cd
+    augroup netrw_setup | au!
+        au FileType netrw nmap <buffer> \. :wincmd p<cr> 
+        au FileType netrw nmap <buffer> \\. :Lexplore<cr>
+">> 'p' to display the current directory
+        au FileType netrw nmap <buffer> pp :pwd<cr>
+        au FileType netrw nmap <buffer> \\. :Lexplore<cr>
+">> 'left' and 'right' to change directory.
+        au FileType netrw nmap <buffer> <right> <cr>cd
+        au FileType netrw nmap <buffer> <left> -cd
+">> 'mkf', 'd', 'D' , 'mv' and 'cp' to do the basic stuff
+        au FileType netrw nmap <buffer> mkf :AsyncRun touch 
+        au FileType netrw nmap <buffer> mkd :AsyncRun mkdir 
+        au FileType netrw nmap <buffer> d :AsyncRun d 
+        au FileType netrw nmap <buffer> D :AsyncRun D 
+        au FileType netrw nmap <buffer> mv :AsyncRun mv 
+        au FileType netrw nmap <buffer> cp :AsyncRun cp -r
+        au FileType netrw nmap <buffer> z :AsyncRun zathura 
+        au FileType netrw nmap <buffer> pdf :AsyncRun pdflatex 
+    augroup END
+
+" VIMTEX
+">> choosing the pdf reader and the compiler configuration. avoiding the log box.
+    let g:tex_flavor = 'latex'          
+    let g:vimtex_view_method = 'zathura'  
+    let g:vimtex_compiler_latexmk= {'options' : [ 
+        \'-pdf', 
+        \'-shell-escape',
+        \'-verbose', 
+        \'-file-line-error', 
+        \'-synctex=1', 
+        \'-interaction=nonstopmode',
+        \],}
+">> .bibtex autocomplete (doesn't working)
+    let g:vimtex_quickfix_enabled = 0   
+    let g:vimtex_complete_bib = {
+        \'menu_fmt': '[@type] @author_all (@year), "@title"'
+        \}
+">> 'f5' to compile and open the resulting .pdf
+    autocmd filetype tex nnoremap <buffer> <f5> :VimtexCompile<cr> i
+    autocmd filetype tex inoremap <buffer> <f5> <esc> :VimtexCompile<cr> i
+"> Commentary
+">> comment current line in insert mode with '\\l'. comment current paragraph with '\\p'  
+    imap \\l <esc>gcc i
+    imap \\p <esc>gcap i
+    nmap \\l <esc>gcc i
+    nmap \\p <esc>gcap i
+
+" SNIPMATE
+">> setting the newer version to avoid 'SnipMate deprecated' message.
+    let g:snipMate = { 'snippet_version' : 1 }
+">> ctrl+e and ctrl+b to emphasized and bold text
+    autocmd filetype tex inoremap <buffer> <c-e>  \em<tab>
+    autocmd filetype tex inoremap <buffer> <c-b> \bf<tab>
+    autocmd filetype tex vnoremap <buffer> <c-e> c\emph{<esc>"+pi} 
+    autocmd filetype tex vnoremap <buffer> <c-b> c\emph{<esc>"+pi} 
+
+" VIMWIKI
+">> setting wiki paths and names. setting Markdown syntax
+        let g:vimwiki_list = [
+                          \{ 'path': '~/files/me/org/',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'org' },
+                          \{ 'path': '~/files/me/org/dev',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'dev' },
+                          \{ 'path': '~/files/me/org/mpc',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'mpc' },
+                          \{ 'path': '~/files/math/ideas',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md', 
+                          \  'name': 'ideas' },
+                          \{ 'path': '~/files/me/org/pessoal',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'me' },
+                          \{ 'path': '~/files/nerd/doc',
+                          \  'syntax': 'markdown',
+                          \  'ext': '.md',
+                          \  'name': 'doc' }
+                        \]
+">> setting Markdown syntax highlight instead of vimwiki syntax highlight
+"    autocmd FileType vimwiki setlocal syntax=markdown
+">> disabling some default keybindings
+    let g:vimwiki_key_mappings =
+                            \ { 'all_maps':1 ,
+                           \   'global': 0,
+                            \   'headers': 1,
+                            \  'text_objs': 0,
+                            \   'table_format': 0,
+                            \   'table_mappings': 0,
+                            \   'lists': 1,
+                            \   'links': 0,
+                            \   'html': 0,
+                            \   'mouse': 0,
+                            \ }
+
+">> '\[' and 'ctrl+[' to follow links. '\]' and 'ctrl+]' to go back
+    autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
+    autocmd filetype vimwiki nnoremap \[ :VimwikiFollowLink<cr>
+    autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
+    autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
+    autocmd filetype vimwiki nnoremap \] :VimwikiGoBackLink<cr>
+    autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
+">> go to main index.md with '1'. Go to main index.md with '0'
+    autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
+    autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
+">> 'rn' to rename a file
+    autocmd filetype vimwiki nnoremap rn :VimwikiRenameFile<cr>
+">> 'd' to delete a file
+    autocmd filetype vimwiki nnoremap d :VimwikiDeleteFile<cr>
+
+" CALENDAR-VIM
+">> 'tab' and 'shift+tab' to change month. '<' and '>' to change year
+    let g:calendar_keys = {
+    \'goto_next_month': '<tab>',
+    \'goto_prev_month': '<s-tab>',
+    \'goto_next_year': '>',
+    \'goto_prev_year': '<',
+    \}
+

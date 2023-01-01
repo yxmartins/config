@@ -62,7 +62,6 @@
     inoremap \\n <esc>zg i
     nnoremap \\m z=i
     inoremap \\m <esc>z=i
-
 "> Mailing
 ">> set up syntax highlighting for mutt
     au bufread,bufnewfile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt* :set ft=mail
@@ -140,170 +139,36 @@
     inoremap <c-q> <esc> :q!<cr>
     vnoremap <c-q> <esc> :q!<cr>
 "> Tabs, Buffers and Tablines
-">> '!' to execute a shell command
-    nnoremap ! :!
-">> '\;' to open/close a terminal session
-    nnoremap \; :term ++close<cr>
-    inoremap \; <esc>:term ++close<cr>
-    tnoremap \; <c-d>
 ">> '\left' and '\right' to change tab
     nnoremap \<right> gt
     inoremap \<right> <esc>gt
     nnoremap \<left> gT
     inoremap \<left> <esc>gT
+">> '\;' to open/close a terminal session. 'ctrl+q' to close it.
+    nnoremap \; :term ++close<cr>
+    inoremap \; <esc>:term ++close<cr>
+    tnoremap \; <c-d>
+    tnoremap <c-q> <c-d>
+"> Shell Commands
+">> '!' to execute a shell command
+    nnoremap ! :!
+">> '\\d'  and '\\D' to remove and delete the current file
+    nnoremap \\d :!d%<cr>
+    nnoremap \\D :!D%<cr>
+    inoremap \\d <esc>:!d%<cr>
+    inoremap \\D <esc>:!D%<cr>
+">> '\\mv', '\\cp' and '\\rn' to move, copy and rename current file
+    nnoremap \\mv :!mv %
+    nnoremap \\cp :!cp %
+    nnoremap \\cp :!mv %
+    inoremap \\mv <esc>:!mv %
+    inoremap \\cp <esc>:!cp %
+    inoremap \\cp <esc>:!mv %
 
 " PLUGIN config
 "> Pathogen as the Plugin Installer 
     execute pathogen#infect()
-"> Netrw
-">> sync current and browsing directories
-    let g:netrw_keepdir = 0
-">> hide dot files in startup
-    let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-">> hide banner
-    let g:netrw_banner = 0
+"> Include config file
+    source /home/yurixm/files/config/vim/vimrc_plugin
 
-    let g:netrw_browse_split = 4
-    let g:netrw_altv = 0
-    let g:netrw_preview = 1
-    let g:netrw_rm_cmd = "rm -rf"
-    let g:netrw_rmdir_cmd = "rm -rf"
-    let g:netrw_rmf_cmd = "rm -rf"
-    let g:netrw_rename_cmd = "mv -r"
-    let g:netrw_special_syntax = 0
-    let g:netrw_hide= 1
-
-    let g:netrw_winsize = 15
-
-    augroup netrw_setup | au!
-        au FileType netrw nmap <buffer> <right> <cr>
-        au FileType netrw nmap <buffer> <left> -
-    augroup END
-
-"> NerdTree
-">> automatically start NerdTree focused on the file window
-">  autocmd VimEnter * NERDTree | wincmd p
-">> refresh the current folder if any changes
-    autocmd BufEnter NERD_tree_* | execute 'normal R'
-    au CursorHold * if exists("t:NerdTreeBufName") | execute 'normal R'  | endif 
-">> reload the window if directory is changed
-    augroup DIRCHANGE
-        au!
-        autocmd DirChanged global :NERDTreeCWD
-    augroup END
-">> simplify the layout
-    let g:NERDTreeMinimalUI=1
-    let g:NERDTreeMinimalMenu=1
-    let g:loaded_nerdtree_exec_menuitem = 1
-    let g:loaded_nerdtree_fs_menu = 1
-    let g:NERDTreeWinSize = 20
-">> '\.' or 'shift+tab'  to switch focus between NerdTree and file windows
-    nnoremap \. :wincmd p<cr>
-    inoremap \. <esc>:wincmd p<cr>
-    nnoremap <s-tab> :wincmd p<cr>
-    inoremap <s-tab> <esc>:wincmd p<cr>
-">> '\\.' to toggle the NerdTree window
-    nnoremap \\. :Lexplore<cr>
-    inoremap \\. <esc>:Lexplore<cr>    
-">> 'left' and 'right' to change directory.
-    let g:NERDTreeMapUpdir='<left>'
-    let g:NERDTreeMapChdir='<right>'  
-"> VimTex
-">> choosing the pdf reader and the compiler configuration. avoiding the log box.
-    let g:tex_flavor = 'latex'          
-    let g:vimtex_view_method = 'zathura'  
-    let g:vimtex_compiler_latexmk= {'options' : [ 
-        \'-pdf', 
-        \'-shell-escape',
-        \'-verbose', 
-        \'-file-line-error', 
-        \'-synctex=1', 
-        \'-interaction=nonstopmode',
-        \],}
-">> .bibtex autocomplete (doesn't working)
-    let g:vimtex_quickfix_enabled = 0   
-    let g:vimtex_complete_bib = {
-        \'menu_fmt': '[@type] @author_all (@year), "@title"'
-        \}
-">> 'f5' to compile and open the resulting .pdf
-    autocmd filetype tex nnoremap <buffer> <f5> :VimtexCompile<cr> i
-    autocmd filetype tex inoremap <buffer> <f5> <esc> :VimtexCompile<cr> i
-"> Commentary
-">> comment current line in insert mode with '\\l'. comment current paragraph with '\\p'  
-    imap \\l <esc>gcc i
-    imap \\p <esc>gcap i
-    nmap \\l <esc>gcc i
-    nmap \\p <esc>gcap i
-"> SnipMate
-">> setting the newer version to avoid 'SnipMate deprecated' message.
-    let g:snipMate = { 'snippet_version' : 1 }
-">> ctrl+e and ctrl+b to emphasized and bold text
-    autocmd filetype tex inoremap <buffer> <c-e>  \em<tab>
-    autocmd filetype tex inoremap <buffer> <c-b> \bf<tab>
-    autocmd filetype tex vnoremap <buffer> <c-e> c\emph{<esc>"+pi} 
-    autocmd filetype tex vnoremap <buffer> <c-b> c\emph{<esc>"+pi} 
-"> Calendar-Vim
-">> 'tab' and 'shift+tab' to change month. '<' and '>' to change year
-    let g:calendar_keys = {
-    \'goto_next_month': '<tab>',
-    \'goto_prev_month': '<s-tab>',
-    \'goto_next_year': '>',
-    \'goto_prev_year': '<',
-    \}
-"> VimWiki
-">> setting wiki paths and names. setting Markdown syntax
-        let g:vimwiki_list = [
-                          \{ 'path': '~/files/me/org/',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'org' },
-                          \{ 'path': '~/files/me/org/dev',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'dev' },
-                          \{ 'path': '~/files/me/org/mpc',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'mpc' },
-                          \{ 'path': '~/files/math/ideas',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md', 
-                          \  'name': 'ideas' },
-                          \{ 'path': '~/files/me/org/pessoal',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'me' },
-                          \{ 'path': '~/files/nerd/doc',
-                          \  'syntax': 'markdown',
-                          \  'ext': '.md',
-                          \  'name': 'doc' }
-                        \]
-">> setting Markdown syntax highlight instead of vimwiki syntax highlight
-"    autocmd FileType vimwiki setlocal syntax=markdown
-">> disabling some default keybindings
-    let g:vimwiki_key_mappings =
-                            \ { 'all_maps':1 ,
-                           \   'global': 0,
-                            \   'headers': 1,
-                            \  'text_objs': 0,
-                            \   'table_format': 0,
-                            \   'table_mappings': 0,
-                            \   'lists': 1,
-                            \   'links': 0,
-                            \   'html': 0,
-                            \   'mouse': 0,
-                            \ }
-
-">> 'ctrl+[' to follow links. 'ctrl+]' to go back
-    autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
-    autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
-    autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
-    autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
-">> go to main index.md with '1'. Go to main index.md with '0'
-    autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
-    autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
-">> 'rn' to rename a file
-    autocmd filetype vimwiki nnoremap rn :VimwikiRenameFile<cr>
-">> 'd' to delete a file
-    autocmd filetype vimwiki nnoremap d :VimwikiDeleteFile<cr>
 
