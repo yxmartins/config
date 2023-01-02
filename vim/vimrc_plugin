@@ -1,4 +1,3 @@
-
 " NETRW
 "> Layout
 ">> hide banner
@@ -43,8 +42,10 @@
         au FileType netrw nmap <buffer> D :AsyncRun D 
         au FileType netrw nmap <buffer> mv :AsyncRun mv 
         au FileType netrw nmap <buffer> cp :AsyncRun cp -r
+">> 'z' to open with zathura. 'pdf' ...
         au FileType netrw nmap <buffer> z :AsyncRun zathura 
-        au FileType netrw nmap <buffer> pdf :AsyncRun pdflatex 
+        au FileType netrw nmap <buffer> pdf :AsyncRun pdflatex
+        au FileType netrw nmap <buffer> cvt :AsyncRun cvt -md -pdf 
     augroup END
 
 " VIMTEX
@@ -131,9 +132,11 @@
     autocmd filetype vimwiki nnoremap <c-[> :VimwikiFollowLink<cr>
     autocmd filetype vimwiki nnoremap \[ :VimwikiFollowLink<cr>
     autocmd filetype vimwiki inoremap <c-[> <esc>:VimwikiFollowLink<cr>
+    autocmd filetype vimwiki inoremap \[ <esc>:VimwikiFollowLink<cr>
     autocmd filetype vimwiki nnoremap <c-]> :VimwikiGoBackLink<cr>
     autocmd filetype vimwiki nnoremap \] :VimwikiGoBackLink<cr>
     autocmd filetype vimwiki inoremap <c-]> <esc>:VimwikiGoBackLink<cr>
+    autocmd filetype vimwiki inoremap \] <esc>:VimwikiGoBackLink<cr>
 ">> go to main index.md with '1'. Go to main index.md with '0'
     autocmd filetype vimwiki nnoremap 0 :! vim ~/files/me/org/index.md<cr> 
     autocmd filetype vimwiki nnoremap 1 :VimwikiIndex<cr>
