@@ -103,7 +103,8 @@
 ## open linkedin
     alias linkedin="firefox https://www.linkedin.com/login"
 ## open whatsapp
-    alias whats="firefox -p whatsapp -url=web.whatsapp.com"
+    alias whatsapp="firefox -p whatsapp -url=web.whatsapp.com"
+    alias whats="whatsapp & disown | xdotool key ctrl+l"
 ## "doc" to open documentation wiki
     alias doc="vim ~/files/nerd/doc/index.md"
 ## "edu" to open edu wiki

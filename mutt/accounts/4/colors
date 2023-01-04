@@ -1,0 +1,35 @@
+# color object foregr backg option
+#---------------------------------
+
+# GENERAL config
+## error message. Cursor line. Status bar. Tilde.
+    color error color181 color236
+    color indicator color231 color241
+    color status color110 color236
+    color tilde	color231 default
+
+# INDEX config
+## Default colors
+    color index color231  color236 '.*'
+## New messages. Replied messages. Deleted messages. Messages in a thread.
+    color index color108 color236 ~N
+    color index color140 color236 ~Q
+    color index	color181 color236 ~D
+    color index	color110 color236 ~v
+
+# PAGER config 
+## Header Colors
+### default header colors
+    color hdrdefault color108 color236
+### subject color. Attachment color
+    color header color140 color236 ^Subject:.*
+    color attachment color110 color236
+## Body Colors
+### Mail addresses. Urls. Quotation. Signature.
+    color body color110	default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+    color body color110	default	(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+    color quoted color181 default
+## Footer Colors
+### signature color
+    color signature  color212 default
+

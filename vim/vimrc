@@ -18,7 +18,8 @@
     set hidden 
 ">> set left margin. Show filename in the terminal tab/window title 
     set numberwidth=2 
-    set title 
+    set title
+
 "> Other 
 ">> open hyperlinks in firefox 
     let g:netrw_browsex_viewer= "zathura" 
@@ -138,32 +139,30 @@
     nnoremap <c-q> :q!<cr>
     inoremap <c-q> <esc> :q!<cr>
     vnoremap <c-q> <esc> :q!<cr>
-"> Tabs, Buffers and Tablines
-">> '\left' and '\right' to change tab
-    nnoremap \<right> gt
-    inoremap \<right> <esc>gt
-    nnoremap \<left> gT
-    inoremap \<left> <esc>gT
+"> Windows, Tabs, Buffers and Tablines
+">> '\\left' and '\\right' to change tab
+    nnoremap \\<right> gt
+    inoremap \\<right> <esc>gt
+    nnoremap \\<left> gT
+    inoremap \\<left> <esc>gT
+">> '\left', '\right', '\up' and '\down' to change window
+    nnoremap \<right> :winc l<cr>
+    inoremap \<right> <esc>:winc l<cr>
+    nnoremap \<left> :winc h<cr>
+    inoremap \<left> <esc>:winc h<cr>
+    nnoremap \<down> :winc j<cr>
+    inoremap \<down> <esc>:winc j<cr>
+    nnoremap \<up> :winc k<cr>
+    inoremap \<up> <esc>:winc k<cr>
+
 ">> '\;' to open/close a terminal session. 'ctrl+q' to close it.
     nnoremap \; :term ++close<cr>
     inoremap \; <esc>:term ++close<cr>
     tnoremap \; <c-d>
     tnoremap <c-q> <c-d>
 "> Shell Commands
-">> '!' to execute a shell command
-    nnoremap ! :!
-">> '\\d'  and '\\D' to remove and delete the current file
-    nnoremap \\d :!d%<cr>
-    nnoremap \\D :!D%<cr>
-    inoremap \\d <esc>:!d%<cr>
-    inoremap \\D <esc>:!D%<cr>
-">> '\\mv', '\\cp' and '\\rn' to move, copy and rename current file
-    nnoremap \\mv :!mv %
-    nnoremap \\cp :!cp %
-    nnoremap \\cp :!mv %
-    inoremap \\mv <esc>:!mv %
-    inoremap \\cp <esc>:!cp %
-    inoremap \\cp <esc>:!mv %
+">> '!' to execute a shell command in the background
+    nnoremap ! :AsyncRun 
 
 " PLUGIN config
 "> Pathogen as the Plugin Installer 

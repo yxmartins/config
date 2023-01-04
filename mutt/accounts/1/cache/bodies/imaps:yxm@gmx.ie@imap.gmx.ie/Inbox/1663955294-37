@@ -1,0 +1,271 @@
+Return-Path: <hugomar@ime.usp.br>
+Authentication-Results:  gmx.net; dkim=pass header.i=@usp.br
+Received: from mail-ej1-f47.google.com ([209.85.218.47]) by mx-ha.gmx.net
+ (mxgmx114 [212.227.17.4]) with ESMTPS (Nemesis) id 1MoPxo-1pTJgm2CVM-00omUd
+ for <yxm@gmx.ie>; Thu, 13 Oct 2022 16:44:56 +0200
+Received: by mail-ej1-f47.google.com with SMTP id q9so4536836ejd.0
+        for <yxm@gmx.ie>; Thu, 13 Oct 2022 07:44:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=usp.br; s=usp-google;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SWsp6QiYRBepkR2evyK4l2GLpcl411LXryTb3/p6DXE=;
+        b=VE1d88Tp4DFILUrCy0VWQ/TBp+7RdRf8k/TIkwlAMuqAf5WyMjnJbHsbG5e339Txgi
+         dSh64KY/I6FXFuYrtJ4yrWvKEpF/RWMd3mV+ss8inqSAydu/R+mgt3vnIoaDuVJ+GGzA
+         332WDN2RnC2C5mo6fJGf360DFoA0Vf9W8gKPPgOL/iYiLVsX9izDUGcnsLCUU1JuWbNA
+         KMQJ0hRxTEz/7it3LkdjPJXKNsjfaGjiU6hd+NkvGGTje3DeH+eStwJT/IIA9jHkT0qL
+         O0nLBNoqxUatiD9ssb5a2EX/HS0ZNVInoQTxLwO0DzqLoIW1vvISz4uyVmRFtjgIgsJ1
+         m4zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SWsp6QiYRBepkR2evyK4l2GLpcl411LXryTb3/p6DXE=;
+        b=5TQ0nPq+4J1hOs52sKKgXE2fY77+c+GHuo6/aZ9U1CjjdryKnKIU0Yy3GcSFkaxXSv
+         uUYSP9NA+uzhftxyJ4t3LgMxJsE69gTYiqflAIvD+pFS03OeGaFfsML/BB68XgY+Mo8F
+         lN/Xh6U/l3zsX0KPrQKrFtl/ShLeUYQpETeBbt8PIwSktVg1LdskTyGQkrNUisfiA9A2
+         iP3SvePI3vml/PGklgLBDqQJpl9LEo2S+yu+5WKu1+x3ziz5/CWv4IEPx4yf0VQxGj2P
+         feZ7eU8h+xSj9CpEPFsbrkeCW4FRzPVUmwtxBVTy/hSqcSQeWfyG1+JLVjbwi1jHJyLH
+         ceHw==
+X-Gm-Message-State: ACrzQf0jK9csb08ma6fd3pdsRFnNZrl7AjzGwlk1oeurjJ3SaOuLsuCk
+	nsIcqRBIoyqEmCeJgW4kSLH7HAslYiUGTE1dOdHDNg==
+X-Google-Smtp-Source: AMsMyM6XGOup2L52pIM56q9EE4FJUYnVMB6mfxf4YH1E0JEha0bZR91zux8QPLWSaaPHOpOb/lhVjPGj71mLkPBnVr8=
+X-Received: by 2002:a17:907:62a1:b0:781:b320:90c0 with SMTP id
+ nd33-20020a17090762a100b00781b32090c0mr68448ejc.255.1665672293222; Thu, 13
+ Oct 2022 07:44:53 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAA==R3SrdQvGxNKEx1Ty33Pm6nah10EkacTEHzPn2vm--xCmvQ@mail.gmail.com>
+In-Reply-To: <CAA==R3SrdQvGxNKEx1Ty33Pm6nah10EkacTEHzPn2vm--xCmvQ@mail.gmail.com>
+From: Hugo Luiz Mariano <hugomar@ime.usp.br>
+Date: Thu, 13 Oct 2022 16:44:42 +0200
+Message-ID: <CAOf4PqiKpH7Sxrdpg7zV_WcQkGcwqWMzqEj2RsdVEVH_-q77ug@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_=5Bforumppg=5D_Chamada_p=C3=B3s=2Ddoc_no_ICTP_=2D_Trieste=2E?=
+To: Yuri Ximenes Martins <yurixm@tuta.io>, Yuri Ximenes Martins <yxm@gmx.ie>
+Content-Type: multipart/alternative; boundary="00000000000059b34405eaeb8dc6"
+Envelope-To: <yxm@gmx.ie>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+X-UI-Filterresults: notjunk:1;V03:K0:fBdMACmot+8=:31hcLf3x2aYVuU40pUR525NQOg
+ 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
+ VSjQh9jrjpT+yg==
+
+--00000000000059b34405eaeb8dc6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+De: emanuel carneiro <emanuelcarneiro@gmail.com>
+Date: qua., 12 de out. de 2022 =C3=A0s 15:03
+Subject: [forumppg] Chamada p=C3=B3s-doc no ICTP - Trieste.
+To: <forumppg@impa.br>
+
+
+Caros colegas,
+
+Gostaria de divulgar a abertura da chamada para posi=C3=A7=C3=B5es de p=C3=
+=B3s-doutorado
+na se=C3=A7=C3=A3o de Matem=C3=A1tica do ICTP:
+
+https://www.ictp.it/about-ictp/media-centre/news/2022/10/math-postdocs-2023=
+.aspx
+
+A data limite para as aplica=C3=A7=C3=B5es =C3=A9 10 de Dezembro de 2022.
+
+Abra=C3=A7os,
+
+Emanuel.
+
+--=20
+*Emanuel Carneiro*
+Research Scientist
+ICTP - International Centre for Theoretical Physics - Trieste, Italy
+https://sites.google.com/view/emanuelcarneiro
+
+--=20
+Voc=C3=AA recebeu essa mensagem porque est=C3=A1 inscrito no grupo "forumpp=
+g" dos
+Grupos do Google.
+Para cancelar inscri=C3=A7=C3=A3o nesse grupo e parar de receber e-mails de=
+le, envie
+um e-mail para forumppg+unsubscribe@impa.br.
+Para ver essa discuss=C3=A3o na Web, acesse
+https://groups.google.com/a/impa.br/d/msgid/forumppg/CAA%3D%3DR3SrdQvGxNKEx=
+1Ty33Pm6nah10EkacTEHzPn2vm--xCmvQ%40mail.gmail.com
+<https://groups.google.com/a/impa.br/d/msgid/forumppg/CAA%3D%3DR3SrdQvGxNKE=
+x1Ty33Pm6nah10EkacTEHzPn2vm--xCmvQ%40mail.gmail.com?utm_medium=3Demail&utm_=
+source=3Dfooter>
+.
+
+--00000000000059b34405eaeb8dc6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>De: <strong class=
+=3D"gmail_sendername" dir=3D"auto">emanuel carneiro</strong> <span dir=3D"a=
+uto">&lt;<a href=3D"mailto:emanuelcarneiro@gmail.com">emanuelcarneiro@gmail=
+.com</a>&gt;</span><br>Date: qua., 12 de out. de 2022 =C3=A0s 15:03<br>Subj=
+ect: [forumppg] Chamada p=C3=B3s-doc no ICTP - Trieste.<br>To:  &lt;<a href=
+=3D"mailto:forumppg@impa.br">forumppg@impa.br</a>&gt;<br></div><br><br><div=
+ dir=3D"ltr">Caros colegas,<div><br></div><div>Gostaria de divulgar a abert=
+ura da chamada para posi=C3=A7=C3=B5es de p=C3=B3s-doutorado na se=C3=A7=C3=
+=A3o de Matem=C3=A1tica do ICTP:</div><div><br></div><div><a href=3D"https:=
+//www.ictp.it/about-ictp/media-centre/news/2022/10/math-postdocs-2023.aspx"=
+ target=3D"_blank">https://www.ictp.it/about-ictp/media-centre/news/2022/10=
+/math-postdocs-2023.aspx</a></div><div><br></div><div>A data limite para as=
+ aplica=C3=A7=C3=B5es =C3=A9 10 de Dezembro de 2022.</div><div><br></div><d=
+iv>Abra=C3=A7os,=C2=A0</div><div><br></div><div>Emanuel.<br clear=3D"all"><=
+div><br></div>-- <br><div dir=3D"ltr" data-smartmail=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div><div><div><div><div><font size=3D"1" f=
+ace=3D"arial, sans-serif"><b>Emanuel Carneiro</b><br></font></div><font siz=
+e=3D"1" face=3D"arial, sans-serif">Research Scientist</font></div><font siz=
+e=3D"1" face=3D"arial, sans-serif">ICTP - International Centre for Theoreti=
+cal Physics -=C2=A0</font><span style=3D"font-family:arial,sans-serif;font-=
+size:x-small">Trieste, Italy</span></div></div></div><div><font face=3D"ari=
+al, sans-serif" size=3D"1"><a href=3D"https://sites.google.com/view/emanuel=
+carneiro" target=3D"_blank">https://sites.google.com/view/emanuelcarneiro</=
+a></font><br></div><font size=3D"1"><br></font></div></div></div></div></di=
+v>
+
+<p></p>
+
+-- <br>
+Voc=C3=AA recebeu essa mensagem porque est=C3=A1 inscrito no grupo &quot;fo=
+rumppg&quot; dos Grupos do Google.<br>
+Para cancelar inscri=C3=A7=C3=A3o nesse grupo e parar de receber e-mails de=
+le, envie um e-mail para <a href=3D"mailto:forumppg+unsubscribe@impa.br" ta=
+rget=3D"_blank">forumppg+unsubscribe@impa.br</a>.<br>
+Para ver essa discuss=C3=A3o na Web, acesse <a href=3D"https://groups.googl=
+e.com/a/impa.br/d/msgid/forumppg/CAA%3D%3DR3SrdQvGxNKEx1Ty33Pm6nah10EkacTEH=
+zPn2vm--xCmvQ%40mail.gmail.com?utm_medium=3Demail&amp;utm_source=3Dfooter" =
+target=3D"_blank">https://groups.google.com/a/impa.br/d/msgid/forumppg/CAA%=
+3D%3DR3SrdQvGxNKEx1Ty33Pm6nah10EkacTEHzPn2vm--xCmvQ%40mail.gmail.com</a>.<b=
+r>
+</div></div>
+
+--00000000000059b34405eaeb8dc6--

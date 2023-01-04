@@ -1,0 +1,229 @@
+Return-Path: <hugomar@ime.usp.br>
+Authentication-Results:  gmx.net; dkim=pass header.i=@usp.br
+Received: from mail-ed1-f54.google.com ([209.85.208.54]) by mx-ha.gmx.net
+ (mxgmx105 [212.227.17.4]) with ESMTPS (Nemesis) id 1MqZIG-1pVtr90c8e-00maA7
+ for <yxm@gmx.ie>; Sat, 15 Oct 2022 15:10:59 +0200
+Received: by mail-ed1-f54.google.com with SMTP id q19so10186821edd.10
+        for <yxm@gmx.ie>; Sat, 15 Oct 2022 06:10:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=usp.br; s=usp-google;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/yv0kh85Oss7ePIZqBWP4Ny5bY3/OW68NjxrkPxVJEc=;
+        b=uknWpGgIDBCgfc2bqRp54X/D4+TftELaA6SReIkbAbqIDGCtDlpifK8pqDyhBYRScO
+         Gw2/Oh5RAFV8Gw7iiXKzHtd7k2lnfDyrzpfhgixGIBm7GE7VZ1G1sItGxxWUcOqDbc7r
+         aEU8XU0eTQaQKF8SSjU7BWQQ56jgSGyBuaajJx+dDnHgBqp9D/N69c+tEDLRUQdS2LWi
+         cGWtM3JjMUwc7Kk7uRoVQN9peGzmn7kAWkKKL+L6iKLmWYgItIpQlMseX1CsPfnh1kE9
+         TzTvPChpAyoLBJTgznSYKwSFaecYhMeQZ8fzsG9Pby2ZMoCZpD7XgJT+Va4Qe4ojYp17
+         kn6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/yv0kh85Oss7ePIZqBWP4Ny5bY3/OW68NjxrkPxVJEc=;
+        b=NVtFJlNO1c8GOt5Qniiowt4rNxYTH4nz16vFaVlYfmfoS9Y5C+AM2TpaUO5loCsAgS
+         +QcUqvMkWJwKeUNBcauTbYaImyTF0noVYEJ8vN8CzNGY45oUrIDw6/yfvsFtjUvmwed0
+         mnTJB07o4pGeulc9qL18qkcHm9vRW76xbKdXsB37xhCeEZ1bSh46eDaigkEmmF59w7Ru
+         VyA5Sxhh8lMl5xSqTYXBWlm/rs80zIJW3FZkYz9gXLNrTnd2mwoCSOAdW5g64ib+yPTA
+         oHMV8XEsfeEw40x1duhhpSIY+o6yzmc/5+6nM+epxBx1wq3tuHDQQzRDVsZluOcgSw0J
+         R6VA==
+X-Gm-Message-State: ACrzQf0uVnUVvRe5uD8iphTyFO0CXEUFXpe72bBavZdAYFZH4S1rjs7D
+	CgkZyoHR1/zSoF5QwiLeRKSpzyUpT7Vs84lQTswyhmWDGfIfdA==
+X-Google-Smtp-Source: AMsMyM4JZDicEIsWoj8ezNpo4IPOUTHODtosrnGYfAv4sc0m6CCeS0tIi5qnyykzj51ZGLLz9fY257Fc6SPhDidxf5Q=
+X-Received: by 2002:a05:6402:5106:b0:45c:2c80:94a4 with SMTP id
+ m6-20020a056402510600b0045c2c8094a4mr2264083edd.298.1665839456703; Sat, 15
+ Oct 2022 06:10:56 -0700 (PDT)
+MIME-Version: 1.0
+From: Hugo Luiz Mariano <hugomar@ime.usp.br>
+Date: Sat, 15 Oct 2022 15:10:44 +0200
+Message-ID: <CAOf4PqjEHnD041+30X2u8T1AYD7+VNi_NQQVynv=e1wGdMN9Tw@mail.gmail.com>
+Subject: publicacoes do Jose Siqueira
+To: Yuri Ximenes Martins <yxm@gmx.ie>
+Content-Type: multipart/alternative; boundary="00000000000011f01305eb1279c7"
+Envelope-To: <yxm@gmx.ie>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+X-UI-Filterresults: notjunk:1;V03:K0:rYzRvhVaLrE=:ci+x6gaFcltUlo9jJL54FAIDhp
+ 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
+
+--00000000000011f01305eb1279c7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Oi Yuri,
+
+
+Envio publica=C3=A7=C3=B5es do Jos=C3=A9 Siqueira para voce citar la na par=
+te  dos
+colaboradores. Tamb=C3=A9m seria bom adicionar algumas pessoas do IME-USP n=
+esta
+parte.
+
+
+- Peter F. Faul, Graham Manuell, Jose Siqueira. 2-dimensional bifunctor
+theorems and distributive laws. Theory and Applications of Categories, Vol.
+37, No. 34, 2021, pp. 1149=E2=80=931175.
+
+- Peter F. Faul, Graham Manuell, Jose Siqueira. Artin glueings of toposes
+as adjoint split extensions. To appear in: Journal of Pure and Applied
+Algebra.
+
+
+Abs
+Hugo
+
+--00000000000011f01305eb1279c7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Oi Yuri,<div><br></div><div><br></div><div>Envio publica=
+=C3=A7=C3=B5es do Jos=C3=A9 Siqueira para voce=C2=A0citar la na parte=C2=A0=
+ dos colaboradores. Tamb=C3=A9m seria bom adicionar algumas pessoas=C2=A0do=
+ IME-USP nesta parte.</div><div><br></div><div><br></div><div><span style=
+=3D"font-family:&quot;Source Sans 3&quot;,sans-serif;font-size:14px;backgro=
+und-color:rgb(255,255,255)"><font color=3D"#000000">- Peter F. Faul, Graham=
+ Manuell, Jose Siqueira. 2-dimensional bifunctor theorems and distributive =
+laws. Theory and Applications of Categories, Vol. 37, No. 34, 2021, pp. 114=
+9=E2=80=931175.</font></span></div><div><span style=3D"background-color:rgb=
+(255,255,255)"><font color=3D"#000000"><br style=3D"font-family:&quot;Sourc=
+e Sans 3&quot;,sans-serif;font-size:14px"><span style=3D"font-family:&quot;=
+Source Sans 3&quot;,sans-serif;font-size:14px">- Peter F. Faul, Graham Manu=
+ell, Jose Siqueira. Artin glueings of toposes as adjoint split extensions. =
+To appear in: Journal of Pure and Applied Algebra.</span></font></span><br>=
+</div><div><span style=3D"background-color:rgb(255,255,255)"><font color=3D=
+"#000000"><span style=3D"font-family:&quot;Source Sans 3&quot;,sans-serif;f=
+ont-size:14px"><br></span></font></span></div><div><span style=3D"backgroun=
+d-color:rgb(255,255,255)"><font color=3D"#000000"><span style=3D"font-famil=
+y:&quot;Source Sans 3&quot;,sans-serif;font-size:14px"><br></span></font></=
+span></div><div><div>Abs</div><div>Hugo</div></div></div>
+
+--00000000000011f01305eb1279c7--

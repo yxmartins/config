@@ -22,30 +22,30 @@
     set autochdir
 "> Hotkeys
 ">> '\.'  to switch focus between Netrw and file windows. '\\.' to toggle the Netrw window
-    nnoremap \. :wincmd p<cr>cd
-    inoremap \. <esc>:wincmd p<cr>cd
+    nnoremap \. :winc h<cr>cd
+    inoremap \. <esc>:winc h<cr>cd
     nnoremap \\. :Lexplore<cr>cd
     inoremap \\. <esc>:Lexplore<cr>cd
     augroup netrw_setup | au!
-        au FileType netrw nmap <buffer> \. :wincmd p<cr> 
-        au FileType netrw nmap <buffer> \\. :Lexplore<cr>
-">> 'p' to display the current directory
+        au FileType netrw nmap <buffer> \. :winc l<cr>cd 
+        au FileType netrw nmap <buffer> \\. :Lexplore<cr>cd
+        au FileType netrw nmap <buffer> \\. :Lexplore<cr>cd
+">> 'pp' to display the current directory
         au FileType netrw nmap <buffer> pp :pwd<cr>
-        au FileType netrw nmap <buffer> \\. :Lexplore<cr>
 ">> 'left' and 'right' to change directory.
         au FileType netrw nmap <buffer> <right> <cr>cd
         au FileType netrw nmap <buffer> <left> -cd
 ">> 'mkf', 'd', 'D' , 'mv' and 'cp' to do the basic stuff
-        au FileType netrw nmap <buffer> mkf :AsyncRun touch 
-        au FileType netrw nmap <buffer> mkd :AsyncRun mkdir 
-        au FileType netrw nmap <buffer> d :AsyncRun d 
-        au FileType netrw nmap <buffer> D :AsyncRun D 
-        au FileType netrw nmap <buffer> mv :AsyncRun mv 
-        au FileType netrw nmap <buffer> cp :AsyncRun cp -r
+        au FileType netrw nmap <buffer> mkf cd:AsyncRun touch 
+        au FileType netrw nmap <buffer> mkd cd:AsyncRun mkdir 
+        au FileType netrw nmap <buffer> d cd:AsyncRun d 
+        au FileType netrw nmap <buffer> D cd:AsyncRun D
+        au FileType netrw nmap <buffer> mv cd:AsyncRun mv 
+        au FileType netrw nmap <buffer> cp cd:AsyncRun cp -r
 ">> 'z' to open with zathura. 'pdf' ...
-        au FileType netrw nmap <buffer> z :AsyncRun zathura 
-        au FileType netrw nmap <buffer> pdf :AsyncRun pdflatex
-        au FileType netrw nmap <buffer> cvt :AsyncRun cvt -md -pdf 
+        au FileType netrw nmap <buffer> z cd:AsyncRun zathura 
+        au FileType netrw nmap <buffer> pdf cd:AsyncRun pdflatex
+        au FileType netrw nmap <buffer> cvt cd:AsyncRun cvt -md -pdf 
     augroup END
 
 " VIMTEX

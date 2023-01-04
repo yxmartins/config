@@ -1,0 +1,6 @@
+text/plain; cat %s; copiousoutput
+text/html; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; firefox /tmp/mutt/$(basename %s) &
+text/html; "$BROWSER" %s &; test=test -n "$DISPLAY"; needsterminal;
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+
+image/*; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; xdg-open /tmp/mutt/$(basename %s) &

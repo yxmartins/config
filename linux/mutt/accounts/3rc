@@ -1,17 +1,17 @@
-    source ~/files/sec/mutt
+source ~/files/sec/mutt
 
 # BASIC info
-    set my_email_adress = "$my_email1"
-    set my_pass = "$my_pass1"
-    set realname = "$my_name1"
-    set my_imap = "$my_imap1"
-    set my_smtp = "$my_smtp1"
+    set my_email_adress = "$my_email3"
+    set my_pass = "$my_pass3"
+    set realname = "$my_name3"
+    set my_imap = "$my_imap3"
+    set my_smtp = "$my_smtp3"
 
 # SERVER config
 ## SSL
     set ssl_starttls=yes
     set ssl_force_tls=yes
-    set certificate_file ="~/.mutt/accounts/1/certificates"
+    set certificate_file ="~/.mutt/accounts/3/certificates"
 ## IMAP
     set imap_user = "$my_email_adress"
     set imap_pass = "$my_pass"
@@ -28,15 +28,15 @@
     set postponed = "=Drafts"
     set record = "=Sent"
     set trash = "=Trash"
-    set header_cache = ~/.mutt/accounts/1/cache/headers
-    set message_cachedir = ~/.mutt/accounts/1/cache/bodies 
+    set header_cache = ~/.mutt/accounts/3/cache/headers
+    set message_cachedir = ~/.mutt/accounts/3/cache/bodies 
 
 # MAIL config
 ## status bar format. including signature
     set status_format = "$my_email_adress %f | Messages: %m, %l"
-    set signature = "~/.mutt/accounts/1/signature"
+    set signature = "~/.mutt/accounts/3/signature"
 ## setting the colorscheme
-    source ~/.mutt/accounts/1/colors
+    source ~/.mutt/accounts/3/colors
 ## Sidebar
 ### start with visible sidebar. sidebar width. sidebar format.
     set sidebar_visible=yes
