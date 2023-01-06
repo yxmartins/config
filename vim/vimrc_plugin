@@ -68,21 +68,65 @@
 ">> 'f5' to compile and open the resulting .pdf
     autocmd filetype tex nnoremap <buffer> <f5> :VimtexCompile<cr> i
     autocmd filetype tex inoremap <buffer> <f5> <esc> :VimtexCompile<cr> i
-"> Commentary
-">> comment current line in insert mode with '\\l'. comment current paragraph with '\\p'  
-    imap \\l <esc>gcc i
-    imap \\p <esc>gcap i
-    nmap \\l <esc>gcc i
-    nmap \\p <esc>gcap i
 
 " SNIPMATE
 ">> setting the newer version to avoid 'SnipMate deprecated' message.
     let g:snipMate = { 'snippet_version' : 1 }
-">> ctrl+e and ctrl+b to emphasized and bold text
-    autocmd filetype tex inoremap <buffer> <c-e>  \em<tab>
-    autocmd filetype tex inoremap <buffer> <c-b> \bf<tab>
+">> 'ctrl+e' and 'ctrl+b' to emphasized and bold text
+    autocmd filetype tex inoremap <buffer> <c-e> \emph{}
+    autocmd filetype tex inoremap <buffer> <c-b> \textbf{}
     autocmd filetype tex vnoremap <buffer> <c-e> c\emph{<esc>"+pi} 
     autocmd filetype tex vnoremap <buffer> <c-b> c\emph{<esc>"+pi} 
+
+" FVF.VIM
+">> setting the location of fzf binary
+    set rtp+=~/.fzf
+">> defining 'Bibtex_ls' function that execute 'bibtex-ls' in .bib files near
+">> the current directory 
+    function! Bibtex_ls()
+        let bibfiles = (
+            \ globpath('.', '*.bib', v:true, v:true) +
+            \ globpath('..', '*.bib', v:true, v:true) +
+            \ globpath('*/', '*.bib', v:true, v:true)
+            \ )
+        let bibfiles = join(bibfiles, ' ')
+        let source_cmd = 'bibtex-ls '.bibfiles
+        return source_cmd
+    endfunction
+">> putting 'bibtex-cite' and 'bibtex-markdown' into the context
+    function! s:bibtex_cite_sink(lines)
+        let r=system("bibtex-cite -mode=latex", a:lines)
+        execute ':normal! a' . r
+    endfunction
+
+    function! s:bibtex_markdown_sink(lines)
+        let r=system("bibtex-markdown ", a:lines)
+        execute ':normal! a' . r
+    endfunction
+">> '@@' to introduce a latex-style citation in latex files
+    autocmd filetype tex inoremap <silent> @@ <c-g>u<c-o>:call fzf#run({
+                        \ 'source': 'bibtex-ls /home/yurixm/files/math/proj/fapesp/References.bib',
+                        \ 'sink*': function('<sid>bibtex_cite_sink'),
+                        \ 'up': '50%',
+                        \ 'options': '--ansi --multi'})<CR>
+
+    autocmd filetype tex nnoremap <silent> @@ :call fzf#run({
+                        \ 'source': 'bibtex-ls /home/yurixm/files/math/proj/fapesp/References.bib',
+                        \ 'sink*': function('<sid>bibtex_cite_sink'),
+                        \ 'up': '50%',
+                        \ 'options': '--ansi --multi'})<CR>
+">> '@@' to introduce a markdown-style citation in markdown files 
+    autocmd filetype md,markdown inoremap <silent> @@ <c-g>u<c-o>:call fzf#run({
+                        \ 'source': 'bibtex-ls /home/yurixm/files/math/proj/fapesp/References.bib',
+                        \ 'sink*': function('<sid>bibtex_cite_sink'),
+                        \ 'up': '50%',
+                        \ 'options': '--ansi --multi'})<CR>
+
+    autocmd filetype md,markdown nnoremap <silent> @@ :call fzf#run({
+                        \ 'source': 'bibtex-ls /home/yurixm/files/math/proj/fapesp/References.bib',
+                        \ 'sink*': function('<sid>bibtex_cite_sink'),
+                        \ 'up': '50%',
+                        \ 'options': '--ansi --multi'})<CR>
 
 " VIMWIKI
 ">> setting wiki paths and names. setting Markdown syntax
@@ -154,3 +198,13 @@
     \'goto_prev_year': '<',
     \}
 
+" COMMENTARY
+"> comment current line in insert mode with '\\l'. comment current paragraph with '\\p'
+    inoremap \\l <esc>gcc i
+    inoremap \\p <esc>gcap i
+    nnoremap \\l <esc>gcc i
+    nnoremap \\p <esc>gcap i
+
+" CTRLP
+"> start searching from the working directory
+    let g:ctrlp_working_path_mode = 'w'

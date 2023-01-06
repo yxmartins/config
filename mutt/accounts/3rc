@@ -1,42 +1,36 @@
 source ~/files/sec/mutt
 
-# BASIC info
-    set my_email_adress = "$my_email3"
-    set my_pass = "$my_pass3"
-    set realname = "$my_name3"
-    set my_imap = "$my_imap3"
-    set my_smtp = "$my_smtp3"
-
 # SERVER config
 ## SSL
     set ssl_starttls=yes
     set ssl_force_tls=yes
-    set certificate_file ="~/.mutt/accounts/3/certificates"
+    set certificate_file ="~/.mutt/accounts/$my_acc_3/certificates"
 ## IMAP
-    set imap_user = "$my_email_adress"
-    set imap_pass = "$my_pass"
+    set imap_user = "$my_email_3"
+    set imap_pass = "$my_pass_3"
     unset imap_passive
     unset imap_peek
 ## SMTP
-    set smtp_url="smtps://$my_email_adress@$my_smtp:465/"
-    set smtp_pass = "$my_pass"
+    set smtp_url="smtps://$my_email_3@$my_smtp_3:465/"
+    set smtp_pass = "$my_pass_3"
 ## connecting the folders
     unmailboxes *
-    set from = "$my_email_adress"
-    set folder = "imaps://$my_imap"
+    set from = "$my_email_3"
+    set folder = "imaps://$my_imap_3"
     set spoolfile = "=Inbox"
     set postponed = "=Drafts"
     set record = "=Sent"
     set trash = "=Trash"
-    set header_cache = ~/.mutt/accounts/3/cache/headers
-    set message_cachedir = ~/.mutt/accounts/3/cache/bodies 
+    set header_cache = ~/.mutt/accounts/$my_acc_3/cache/headers
+    set message_cachedir = ~/.mutt/accounts/$my_acc_3/cache/bodies 
 
 # MAIL config
 ## status bar format. including signature
-    set status_format = "$my_email_adress %f | Messages: %m, %l"
-    set signature = "~/.mutt/accounts/3/signature"
+    set status_format = "$my_email_3 %f | Messages: %m, %l"
+    set signature = "~/.mutt/accounts/$my_acc_3/signature"
+    set sig_dashes=yes
 ## setting the colorscheme
-    source ~/.mutt/accounts/3/colors
+    source ~/.mutt/accounts/$my_acc_3/colors
 ## Sidebar
 ### start with visible sidebar. sidebar width. sidebar format.
     set sidebar_visible=yes

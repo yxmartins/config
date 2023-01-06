@@ -6,31 +6,34 @@
     set wait_key=no
     unset confirmappend
 ## dont ask to save a message as a draft
-    set postpone=ask-no
+    set postpone=no
     set recall=no
 ## improving speed
-    set sleep_time = 0
+    set sleep_time=0
     set move = no    
     set fast_reply
 ## Vim (in the insert mode with markdown syntax) to write emails
     set edit_headers
     set editor = "vim -c 'set syntax=markdown' -c 'startinsert'"
-## using Abook to manage contacts. "ctrl+a" to add sender as a contact
+## Abook to manage contacts. "ctrl+a" to add sender as a contact
     set query_command= "abook --mutt-query '%s'"
     macro index,pager  a "<pipe-message>abook --add-email-quiet<return>"
     bind editor        <Tab> complete-query
 
 # LAYOUT config
-## add a Vim-like tilde. dont mark wrapped lines
+## Basics
+### add a Vim-like tilde. dont mark wrapped lines
     set tilde
     set markers = no
 ## Index
 ### date format. mailbox format 
     set date_format = "%d %b %R"
-    set index_format = "    %d, by %n. Subject: %s"
+    set index_format = " %d, by %n. Subject: %s"
 ## Pager
 ### pager format
     set pager_format = "From: %F.   Subject: %s"
+    set attach_format = "%f, %M"
+    set digest_collapse
 ### displaying only relevant headers
     ignore *
     unignore From:
@@ -40,8 +43,8 @@
     unignore CC:
     unignore BCC:
 ### fix the order of the relevant headers
-    hdr_order From: Subject: To: CC: BCC: Date:
-
+    hdr_order From: Subject: To: CC: BCC: Date: 
+  
 # MAIL config
 ## mail ordering
     set sort = reverse-threads
@@ -53,7 +56,7 @@
     set imap_idle = no
 ## include received email in replies
     set include
-    set attribution="\n\n\n--\n"
+#   set attribution="\n\n\n--\n"
 ## using w3m to display emails in html
     set send_charset="utf-8"
     alternative_order text/html text/plain text/enriched text multipart/alternative

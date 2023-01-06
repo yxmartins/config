@@ -1,0 +1,75 @@
+# System
+## "clean" to clean terminal session
+    alias clean="xdotool key ctrl+l"
+## "backgd" to start an application in background and clean terminal session
+    alias background="& disown | clean"
+    alias backgd="& disown | clean"
+    alias bkg="& disown | clean"
+## "D" to remove without confirming
+    alias D="yes | D"
+## make a backup and shutdown quickly
+    alias shutdown="shutdown -h now"
+    alias shtdw="bkp && shutdown -h now"
+    alias shdw="bkp && shutdown -h now"
+## "locate" or "lct" to locate files
+    alias locate="mlocate -A -b"
+    alias lct="mlocate -A -b"
+## "kill" to kill applications
+    alias kill="pkill -9"
+
+# Applications
+## start vim in Netrw explorer mode 
+    alias v="sudo -S vim -c 'Lexplore' < ~/files/sec/root"
+## start spotifyd and spotify-tui together
+    alias spt="spotifyd && spt"
+## wifi configuration
+    alias wifi="nmtui"
+    alias wf="nmtui"
+## "z" to open .pdf with zathura
+    alias z="zathura bkg"
+## "m" to open mutt in default account. "mi" to open "ith" account.
+    alias mail="mutt"
+    alias m="mutt"
+    alias m1="mutt -e 'source ~/.mutt/accounts/1rc'"
+    alias m2="mutt -e 'source ~/.mutt/accounts/2rc'"
+    alias m3="mutt -e 'source ~/.mutt/accounts/3rc'"
+    alias m4="mutt -e 'source ~/.mutt/accounts/4rc'"
+    alias m5="mutt -e 'source ~/.mutt/accounts/5rc'"
+    alias m6="mutt -e 'source ~/.mutt/accounts/6rc'"
+## "calc" to open the calculator bc in the interactive mode
+    alias calc="bc -q -i -l"
+## "cal" or "c" to open calcurse
+    alias cal="calcurse"
+    alias c="calcurse"
+## display the 256 colors
+    alias 256="curl -s https://gist.githubusercontent.com/haletom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash"
+## "libgen" to open libgen-cli
+    alias libgen="cd ~/.config && ./libgen search -o ~/files/lib"
+## "jk" to start jekyll server
+    alias jk="bundle exec jekyll serve --livereload"
+
+# PARTICULAR
+## calculate the price of books
+    alias preco="python ~/files/job/livraria/preco.py"
+## meet with hugo
+    alias hugo="firefox https://meet.google.com/zbb-xsxg-swe"
+## open gmail
+    alias gmail="firefox https://accounts.google.com/"
+## open tutanota
+    alias tuta="firefox https://mail.tutanota.com/"
+## open linkedin
+    alias linkedin="firefox https://www.linkedin.com/login"
+## open whatsapp
+    alias whatsapp="firefox -p whatsapp -url=web.whatsapp.com"
+    alias whats="whatsapp bkg"
+## "doc" to open documentation wiki
+    alias doc="vim ~/files/nerd/doc/index.md"
+## "edu" to open edu wiki
+    alias edu="vim ~/files/edu/wiki/index.md"
+## "k" to make the cursor moving fast.
+    function k() {
+        echo >> ~/.config/lxsession/Lubuntu/desktop.conf
+    }
+
+
+
